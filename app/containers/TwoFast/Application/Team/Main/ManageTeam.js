@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { ManageTeamStyle } from './ManageTeamStyle';
-
+import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import * as api from '../../../services/api';
 
@@ -21,6 +21,7 @@ import {
 } from '@material-ui/core';
 
 import CardInfo from '../CardInfo/CardInfo';
+import SelectAvatar from '../selectTeamIcon/SelectAvatar'
 
 const useStyles = ManageTeamStyle;
 
@@ -30,10 +31,17 @@ const ManageTeam = (props) => {
 
   const { handleSubmit, errors, control } = useForm({
     defaultValues: {
-      teamname: '',
+      team_name : "",
+      team_avatar_icon : "",
+      team_avatar_color : ""
     },
   });
 
+  const [dataTeam, setDataTeam] = useState({
+        team_name : "",
+        team_avatar_icon : "",
+        team_avatar_color : ""
+  })
   const [newTeam, setNewTeam] = useState(false);
   const [teamData, setTeamData] = useState([]);
 
@@ -62,14 +70,13 @@ const ManageTeam = (props) => {
     const config = api.MANAGE_TEAM_GET_TEAMLIST(token);
     axios(config)
       .then((res) => {
-        console.log(res);
         setTeamData(res.data.message);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
+  console.log(dataTeam)
   const AddNewTeam = (
     <Dialog
       open={newTeam}
@@ -81,15 +88,51 @@ const ManageTeam = (props) => {
       // onClose={closeNewteam}
     >
       <div className={classes.dialogTextHeaderBox}>
-        <p className={classes.dialogTextHeader}>Create New Team</p>
+        <p className={classes.dialogTextHeader} style={{ color:'#424242' }}>Create New Team</p>
       </div>
       <div className={classes.divForm}>
+       <form onSubmit={handleSubmit((data) => createNewTeamHandler(data))}>
+       <div className="row">
+          <div className="col-4">
+          <p>icon</p>
+          </div>
+          <div className="col-8">
+          <TextField id="outlined-basic" label="Team name" variant="outlined" onChange={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} />
+          </div>
+       </div>
+        
+          <hr />
+        <div style={{width:'80%', marginLeft:'auto', marginRight:'auto'}}>
+          <SelectAvatar />
+        </div>
+          <br />
+          <hr />
+        
+        <div className={classes.actionBox}>
+              <Button
+                color="primary"
+                variant="contained"
+                type="submit"
+                style={{ marginRight: '10px' }}
+              >
+                Confirm
+              </Button>
+              <Button color="primary" variant="outlined" onClick={closeNewteam}>
+                Cancel
+          </Button>
+        </div>
+      </form>
+    
+
+
+
+      {/*
         <form onSubmit={handleSubmit((data) => createNewTeamHandler(data))}>
           <FormControl style={{ width: '70%' }}>
             <InputLabel style={{ fontSize: '13px' }}>Team name</InputLabel>
             <Controller
               as={Input}
-              name="teamname"
+              name="team_name"
               control={control}
               rules={{
                 required: true,
@@ -122,6 +165,9 @@ const ManageTeam = (props) => {
             </Button>
           </div>
         </form>
+      */}
+
+
       </div>
     </Dialog>
   );

@@ -22,6 +22,7 @@ import {
 
 import CardInfo from '../CardInfo/CardInfo';
 import SelectAvatar from '../selectTeamIcon/SelectAvatar'
+import DisplayIconAvatar from '../selectTeamIcon/DisplayIconAvatar'
 
 const useStyles = ManageTeamStyle;
 
@@ -39,9 +40,10 @@ const ManageTeam = (props) => {
 
   const [dataTeam, setDataTeam] = useState({
         team_name : "",
-        team_avatar_icon : "",
-        team_avatar_color : ""
+        team_avatar_icon : "FolderIcon",
+        team_avatar_color : "classes.blue"
   })
+
   const [newTeam, setNewTeam] = useState(false);
   const [teamData, setTeamData] = useState([]);
 
@@ -52,9 +54,9 @@ const ManageTeam = (props) => {
     setNewTeam(false);
   };
 
-  const createNewTeamHandler = (data) => {
+  const createNewTeamHandler = () => {
     const token = localStorage.getItem('token');
-    const config = api.CREATE_NEW_TEAM(token, data);
+    const config = api.CREATE_NEW_TEAM(token, dataTeam);
     axios(config).then((res) => {
       console.log(res);
     });
@@ -64,6 +66,10 @@ const ManageTeam = (props) => {
     const url = history.location.pathname + '/hey';
     history.push(url);
   };
+
+  const handleChange = (stateValue , newValue) => {
+    setDataTeam({...dataTeam, [stateValue] : newValue})
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -76,7 +82,7 @@ const ManageTeam = (props) => {
         console.log(err);
       });
   }, []);
-  console.log(dataTeam)
+
   const AddNewTeam = (
     <Dialog
       open={newTeam}
@@ -84,8 +90,8 @@ const ManageTeam = (props) => {
       fullWidth={true}
       scroll="paper"
       disableScrollLock={false}
-      //   keepMounted
-      // onClose={closeNewteam}
+      keepMounted
+      onClose={closeNewteam}
     >
       <div className={classes.dialogTextHeaderBox}>
         <p className={classes.dialogTextHeader} style={{ color:'#424242' }}>Create New Team</p>
@@ -94,16 +100,16 @@ const ManageTeam = (props) => {
        <form onSubmit={handleSubmit((data) => createNewTeamHandler(data))}>
        <div className="row">
           <div className="col-4">
-          <p>icon</p>
+            <DisplayIconAvatar avatarUser={dataTeam} />
           </div>
           <div className="col-8">
-          <TextField id="outlined-basic" label="Team name" variant="outlined" onChange={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} />
+            <TextField id="outlined-basic" label="Team name" variant="outlined" onChange={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} />
           </div>
        </div>
         
           <hr />
         <div style={{width:'80%', marginLeft:'auto', marginRight:'auto'}}>
-          <SelectAvatar />
+          <SelectAvatar value={dataTeam} onClick={handleChange}/>
         </div>
           <br />
           <hr />

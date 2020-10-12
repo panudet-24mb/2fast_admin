@@ -43,6 +43,6 @@ export const CREATE_NEW_TEAM = (token, data) => {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
     },
-    data: { team_name: data },
+    data: data
   };
 };

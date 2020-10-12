@@ -79,63 +79,65 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-export default function SelectAvatar() {
+export default function SelectAvatar(props) {
     const classes = useStyles();
-    const [avatarUser, setAvatarUser] = useState({ avatarIcon:"FolderIcon", colorIcon:"classes.green" })
+    // const [avatarUser, setAvatarUser] = useState({ avatarIcon:"FolderIcon", colorIcon:"classes.green" })
 
+    const handleChange = (name , value) =>{
+        props.onClick(name,value);
+      }
     return (
         <div>
                 <p style={{ color:'#424242', fontSize:'1.7rem' }}>icon</p>
                 <div className="row">
-               
-                    <FolderIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"FolderIcon"})} />
-                    <PageviewIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"PageviewIcon"})} />
-                    <AssignmentIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"AssignmentIcon"})} />
-                    <AccessAlarmsIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"AccessAlarmsIcon"})} />
-                    <AccountCircleIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"AccountCircleIcon"})} />
-                    <Brightness4Icon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"Brightness4Icon"})} />
-                    <CardTravelIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"CardTravelIcon"})} />
-                    <EmojiEmotionsIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"EmojiEmotionsIcon"})} />
-                    <EmojiFoodBeverageIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"EmojiFoodBeverageIcon"})} />
-                    <EqualizerIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"EqualizerIcon"})} />
-                    <EvStationIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"EvStationIcon"})} />
-                    <FlashOnIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"FlashOnIcon"})} />
-                    <GroupWorkIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"GroupWorkIcon"})} />
-                    <MoodIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"MoodIcon"})} />
-                    <PieChartIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"PieChartIcon"})} />
-                    <ToysIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"ToysIcon"})} />
-                    <WhatshotIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => setAvatarUser({...avatarUser, avatarIcon:"WhatshotIcon"})} />
+                    <FolderIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","FolderIcon")}  />
+                    <PageviewIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","PageviewIcon")} />
+                    <AssignmentIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","AssignmentIcon")} />
+                    <AccessAlarmsIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","AccessAlarmsIcon")} />
+                    <AccountCircleIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","AccountCircleIcon")} />
+                    <Brightness4Icon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","Brightness4Icon")} />
+                    <CardTravelIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","CardTravelIcon")} />
+                    <EmojiEmotionsIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","EmojiEmotionsIcon")} />
+                    <EmojiFoodBeverageIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","EmojiFoodBeverageIcon")} />
+                    <EqualizerIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","EqualizerIcon")} />
+                    <EvStationIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","EvStationIcon")} />
+                    <FlashOnIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","FlashOnIcon")} />
+                    <GroupWorkIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","GroupWorkIcon")} />
+                    <MoodIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","MoodIcon")} />
+                    <PieChartIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","PieChartIcon")} />
+                    <ToysIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","ToysIcon")} />
+                    <WhatshotIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","WhatshotIcon")} />
+             
                 </div>
                 <hr />
                 <p style={{ color:'#424242',  fontSize:'1.7rem'  }}>color icon</p>
                 <div className="row d-flex flex-wrap" >
-              
                         <div className={classes.green} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.green"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.green")} />
                         <div className={classes.pink} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.pink"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.pink")} />
                         <div className={classes.deepOrange} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.deepOrange"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.deepOrange")} />
                         <div className={classes.deepPurple} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.deepPurple"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.deepPurple")} />
                         <div className={classes.blue} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.blue"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.blue")} />
                         <div className={classes.teal} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.teal"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.teal")} />
                         <div className={classes.lightBlue} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.lightBlue"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.lightBlue")} />
                         <div className={classes.amber} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.amber"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.amber")} />
                         <div className={classes.brown} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.brown"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.brown")} />
                         <div className={classes.grey} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.grey"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.grey")} />
                         <div className={classes.blueGrey} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.blueGrey"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.blueGrey")} />
                         <div className={classes.purple} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.purple"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.purple")} />
                         <div className={classes.indigo} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
-                            onClick={() => setAvatarUser({...avatarUser, colorIcon:"classes.indigo"})} />
+                        onClick={() => handleChange("team_avatar_color","classes.indigo")} />
                   
                 </div>
             

@@ -7,7 +7,7 @@ export const CardInfoStyle = makeStyles({
   },
   paperCard: {
     borderRadius: '8px',
-    height: '100%',
+    height: '120px',
   },
   card: {
     padding: 10,
@@ -62,10 +62,13 @@ export const CardInfoStyle = makeStyles({
   },
   teamName: {
     width: '100%',
-    // alignSelf: 'center',
-    fontSize: '1.1rem',
+    height:'100%',
+    color:'#6c757d',
+    alignSelf: 'center',
+    fontSize: '1.2rem',
     paddingLeft: '10px',
     fontWeight: 'bold',
+    marginLeft:"20px"
   },
   activeIconBox: {
     // width: '100%',

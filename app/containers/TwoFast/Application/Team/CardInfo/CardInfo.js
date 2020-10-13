@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { CardInfoStyle } from './CardInfoStyle';
 
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -15,12 +15,16 @@ import {
 import { el } from 'date-fns/locale';
 import Lottie from 'lottie-react-web'
 import noCreateTeam from '../AnimationTeam/noCreateTeam.json'
+import DisplayIconAvatar from '../selectTeamIcon/DisplayIconAvatar'
 
 const CardInfo = (props) => {
   const { addnewteam, data } = props;
-  // const history = useHistory();
+  const history = useHistory();
   const classes = CardInfoStyle();
 
+  const test = (team_name) => {
+      history.push("/app/manage-team/"+team_name)
+  }
   // console.log(history);
 
   const addNewTeam = (
@@ -60,20 +64,25 @@ const CardInfo = (props) => {
           xs={3}
           key={key.team_id}
           onClick={() => {
-            console.log(key.team_name);
-            // history.push('/app/manage-team/' + key.team_name);
+           //console.log(key.team_name);
+            history.push({
+              pathname: '/app/manage-team/' + key.team_name,
+              state: { detail: key }
+            });
           }}
         >
           <Paper elevation={1} className={classes.paperCard}>
             <div className={classes.card}>
               <div className={classes.topCard}>
-                <div className={classes.teamLogo} />
+                {/*<div className={classes.teamLogo} /> */}
+                <DisplayIconAvatar avatarUser={key} sizeIcon={50} sizeAvatar={80} styleMarginLeft={-10}/> 
                 <div className={classes.teamName}>{key.team_name}</div>
                 <div className={classes.activeIconBox}>
                   <CheckCircleRounded className={classes.activeIcon} />
                 </div>
               </div>
-              <div className={classes.bottomCard}>
+
+          {/* <div className={classes.bottomCard}>
                 <AvatarGroup
                   max={4}
                   className={classes.teamNameAvatar}
@@ -87,7 +96,8 @@ const CardInfo = (props) => {
                   <Avatar name="Nfdsa Kfdsa" size="35" round={true} />
                   <Avatar name="Sfdsa Sfdsa" size="35" round={true} />
                 </AvatarGroup>
-              </div>
+              </div> */}
+
             </div>
           </Paper>
         </Grid>
@@ -150,4 +160,4 @@ const CardInfo = (props) => {
   );
 };
 
-export default CardInfo;
+export default CardInfo

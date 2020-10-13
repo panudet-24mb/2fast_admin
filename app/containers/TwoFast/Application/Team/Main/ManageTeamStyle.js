@@ -13,6 +13,7 @@ export const ManageTeamStyle = makeStyles({
   },
   headerText: {
     fontSize: '1.4rem',
+    color:'#6c757d',
     margin: 0,
     textShadow: '0px 0px 1px black',
   },
@@ -29,7 +30,8 @@ export const ManageTeamStyle = makeStyles({
   },
   dialogTextHeader: {
     margin: 0,
-    fontSize: '1.7rem',
+    fontSize: '1.9rem',
+    fontWeight:'bold'
   },
   divForm: {
     textAlign: 'center',

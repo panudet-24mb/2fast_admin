@@ -87,9 +87,10 @@ export default function SelectAvatar(props) {
         props.onClick(name,value);
       }
     return (
-        <div>
+        <div className="row">
+                
+                <div className="col">
                 <p style={{ color:'#424242', fontSize:'1.7rem' }}>icon</p>
-                <div className="row">
                     <FolderIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","FolderIcon")}  />
                     <PageviewIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","PageviewIcon")} />
                     <AssignmentIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","AssignmentIcon")} />
@@ -109,9 +110,10 @@ export default function SelectAvatar(props) {
                     <WhatshotIcon style={{ fontSize: 30, color: grey[500] }} onClick={() => handleChange("team_avatar_icon","WhatshotIcon")} />
              
                 </div>
-                <hr />
+               
+                <div className="col">
                 <p style={{ color:'#424242',  fontSize:'1.7rem'  }}>color icon</p>
-                <div className="row d-flex flex-wrap" >
+                <div className="d-flex flex-wrap" >
                         <div className={classes.green} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
                         onClick={() => handleChange("team_avatar_color","classes.green")} />
                         <div className={classes.pink} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
@@ -139,6 +141,7 @@ export default function SelectAvatar(props) {
                         <div className={classes.indigo} style={{width:'40px', height:'40px', borderRadius:'50%'}} 
                         onClick={() => handleChange("team_avatar_color","classes.indigo")} />
                   
+                </div>
                 </div>
             
         </div>

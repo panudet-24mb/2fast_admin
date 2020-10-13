@@ -29,7 +29,7 @@ module.exports = options => ({
         Disabled eslint by default.
         You can enable it to maintain and keep clean your code.
         NOTE: By enable eslint running app process at beginning will slower
-      */
+
       {
         enforce: 'pre',
         test: /\.js?$/,
@@ -38,7 +38,7 @@ module.exports = options => ({
         options: {
           quiet: true,
         }
-      },
+      },  */
       {
         test: /\.jsx?$/, // Transform all .js files required somewhere with Babel
         exclude: /node_modules/,

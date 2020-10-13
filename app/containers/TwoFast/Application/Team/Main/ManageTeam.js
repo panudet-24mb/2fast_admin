@@ -52,12 +52,18 @@ const ManageTeam = (props) => {
   };
   const closeNewteam = () => {
     setNewTeam(false);
+    setDataTeam({
+        team_name : "",
+        team_avatar_icon : "FolderIcon",
+        team_avatar_color : "classes.blue"
+    })
   };
 
   const createNewTeamHandler = () => {
     const token = localStorage.getItem('token');
     const config = api.CREATE_NEW_TEAM(token, dataTeam);
     axios(config).then((res) => {
+      check()
       console.log(res);
     });
   };
@@ -70,20 +76,23 @@ const ManageTeam = (props) => {
   const handleChange = (stateValue , newValue) => {
     setDataTeam({...dataTeam, [stateValue] : newValue})
   }
-
-  useEffect(() => {
+  const check=()=>{
     const token = localStorage.getItem('token');
     const config = api.MANAGE_TEAM_GET_TEAMLIST(token);
     axios(config)
-      .then((res) => {
-        setTeamData(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .then((res) => {
+      setTeamData(res.data.message);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  useEffect(() => {
+    check()
   }, []);
 
-  const AddNewTeam = (
+  const AddNewTeam =()=> (
     <Dialog
       open={newTeam}
       maxWidth="xs"
@@ -95,15 +104,19 @@ const ManageTeam = (props) => {
     >
       <div className={classes.dialogTextHeaderBox}>
         <p className={classes.dialogTextHeader} style={{ color:'#424242' }}>Create New Team</p>
+        <br />
       </div>
       <div className={classes.divForm}>
        <form onSubmit={handleSubmit((data) => createNewTeamHandler(data))}>
        <div className="row">
-          <div className="col-4">
-            <DisplayIconAvatar avatarUser={dataTeam} />
+
+          <div className="col-6">
+              <DisplayIconAvatar avatarUser={dataTeam} sizeIcon={50} sizeAvatar={70} styleMarginLeft={95} />
           </div>
-          <div className="col-8">
-            <TextField id="outlined-basic" label="Team name" variant="outlined" onChange={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} />
+
+          <div className="col-6 mt-2">
+            <TextField id="outlined-basic" label="Team name" variant="outlined" 
+              onChange={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} style={{ marginRight:'50px' }}/>
           </div>
        </div>
         
@@ -123,7 +136,7 @@ const ManageTeam = (props) => {
               >
                 Confirm
               </Button>
-              <Button color="primary" variant="outlined" onClick={closeNewteam}>
+              <Button color="primary" variant="outlined" onClick={() => closeNewteam()}>
                 Cancel
           </Button>
         </div>
@@ -190,7 +203,7 @@ const ManageTeam = (props) => {
         render={() => <DetailEx data={testData} />}
       />
       <Route path="/app/manage-team">
-        {AddNewTeam}
+        {AddNewTeam()}
         <Paper
           style={{
             background: '#ababab0d',

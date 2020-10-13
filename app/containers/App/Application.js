@@ -12,6 +12,7 @@ import {
   Parent,
   ManageUser,
   ManageTeam,
+  TeamDetail,
   UserDetail,
   Testlib,
 } from '../pageListAsync';
@@ -34,7 +35,8 @@ class Application extends React.Component {
           {/* 2Fast Component */}
           <Route exact path="/app/manage-user" component={ManageUser} />
           <Route path="/app/manage-user/:userid" component={UserDetail} />
-          <Route path="/app/manage-team" component={ManageTeam} />
+          <Route exact path="/app/manage-team" component={ManageTeam} />
+          <Route path="/app/manage-team/:teamname" component={TeamDetail} />
           <Route path="/app/testlib" component={Testlib} />
           <Route component={NotFound} />
         </Switch>

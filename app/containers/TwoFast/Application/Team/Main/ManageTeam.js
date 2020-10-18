@@ -19,7 +19,7 @@ import {
   Fab,
   Add,
 } from '@material-ui/core';
-
+import Swal from 'sweetalert2'
 import CardInfo from '../CardInfo/CardInfo';
 import SelectAvatar from '../selectTeamIcon/SelectAvatar'
 import DisplayIconAvatar from '../selectTeamIcon/DisplayIconAvatar'
@@ -64,6 +64,7 @@ const ManageTeam = (props) => {
     const config = api.CREATE_NEW_TEAM(token, dataTeam);
     axios(config).then((res) => {
       check()
+      setNewTeam(false)
       console.log(res);
     });
   };
@@ -106,6 +107,7 @@ const ManageTeam = (props) => {
         <p className={classes.dialogTextHeader} style={{ color:'#424242' }}>Create New Team</p>
         <br />
       </div>
+
       <div className={classes.divForm}>
        <form onSubmit={handleSubmit((data) => createNewTeamHandler(data))}>
        <div className="row">

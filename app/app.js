@@ -19,6 +19,8 @@ import 'sanitize.css/sanitize.css';
 import App from 'containers/App';
 import './styles/layout/base.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'sweetalert2/src/sweetalert2.scss';
+import 'antd/dist/antd.css';
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 

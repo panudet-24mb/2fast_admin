@@ -46,3 +46,27 @@ export const CREATE_NEW_TEAM = (token, data) => {
     data: data
   };
 };
+
+export const DELETE_TEAM = (token , data) => {
+  return {
+    method: 'delete',
+    url: 'http://www.2fast.online:5000/api/v2/team',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data: { "team_id" : data }
+  };
+}
+
+export const CHANGE_TEAM_NAME = (token, id, name) => {
+  return {
+    method: 'put',
+    url: 'http://www.2fast.online:5000/api/v2/team/'+id,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data: { "team_name" : name }
+  };
+}

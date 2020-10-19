@@ -70,3 +70,18 @@ export const CHANGE_TEAM_NAME = (token, id, name) => {
     data: { "team_name" : name }
   };
 }
+
+export const UPDATE_AVATAR_ICON = (token, id, avatarIcon, avatarColor) => {
+  return {
+    method: 'put',
+    url: 'http://www.2fast.online:5000/api/v2/team/avatar/'+id,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data: {
+              "team_avatar_icon" : avatarIcon,
+              "team_avatar_color" : avatarColor
+          }
+  };
+}

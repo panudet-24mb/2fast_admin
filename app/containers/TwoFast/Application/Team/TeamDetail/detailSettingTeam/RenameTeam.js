@@ -7,6 +7,7 @@ import axios from 'axios';
 import * as api from '../../../../services/api';
 import { useHistory } from 'react-router-dom';
 import { Button, Input  } from 'antd';
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles((theme) => ({
     
@@ -39,7 +40,14 @@ export default function RenameTeam(props) {
         const token = localStorage.getItem('token');
         const config = api.CHANGE_TEAM_NAME(token, dataTeam.team_id, newNameTeam);
         axios(config).then((res) => {
-            history.push("/app/manage-team");
+            Swal.fire({
+                title: `Change team name success`,
+                icon:'success',
+                timer: 2000,
+                onClose: () => {
+                    history.push("/app/manage-team");
+                }
+            })
         })
     }
    

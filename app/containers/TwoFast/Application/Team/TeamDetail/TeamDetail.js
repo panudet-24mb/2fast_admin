@@ -9,7 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import DatailAdminControler from './DatailAdminControler'
-import DataTableTeamDetailMember from './DataTableTeamDetailMember'
+import DataTableTeamDetailMember from './dataTableTeam/DataTableTeamDetailMember'
 import SettingTeam from './SettingTeam'
 
 function TabPanel(props) {
@@ -81,7 +81,7 @@ export default function TeamDetail(props) {
     return (
             <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3">
-                    <DatailAdminControler detailTeam={detailTeam} changeDisplaySetiingAndTable={changeDisplaySetiingAndTable}/>
+                    <DatailAdminControler test={test} detailTeam={detailTeam} changeDisplaySetiingAndTable={changeDisplaySetiingAndTable}/>
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9">
                 <div className={classes.root}>

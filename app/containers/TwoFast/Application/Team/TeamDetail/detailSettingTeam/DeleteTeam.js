@@ -52,24 +52,36 @@ export default function DeleteTeam(props) {
         const token = localStorage.getItem('token');
         const config = api.DELETE_TEAM(token, dataTeam.team_id);
         axios(config).then((res) => {
-            Swal.fire({
-                title: 'Remove Success',
-                icon:'success',
-                timer: 2000,
-                onClose: () => {
-                    history.push("/app/manage-team");
-                  }
-            })
+            // Swal.fire({
+            //     title: 'Remove Success',
+            //     icon:'success',
+            //     timer: 2000,
+            //     onClose: () => {
+            //         history.push("/app/manage-team");
+            //       }
+            // })
         })
-        .catch( (err) =>{
-            Swal.fire({
-                title: 'Delete Success!!',
-                icon:'success',
-                timer: 2000,
-                onClose: () => {
-                    history.push("/app/manage-team");
-                  }
-            })
+        .catch( (error) =>{
+            if(error.response.status === 404){
+                Swal.fire({
+                    title: 'Remove Success',
+                    icon:'success',
+                    timer: 2000,
+                    onClose: () => {
+                        history.push("/app/manage-team");
+                    }
+                })
+            } else {
+                Swal.fire({
+                    title: `Can't remove your team Please remove later`,
+                    icon:'error',
+                    timer: 2000,
+                    onClose: () => {
+                        history.push("/app/manage-team");
+                    }
+                })
+            }
+
         } )
     }
 

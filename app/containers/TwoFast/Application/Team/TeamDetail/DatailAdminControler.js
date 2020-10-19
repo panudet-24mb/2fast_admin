@@ -41,7 +41,7 @@ export default function DatailAdminControler(props) {
                 <AddPeopleTeam dataUser={dataUser}/>
             </div>
             <div className="col-2">
-                <ModalSettingTeamDetail dataUser={dataUser} changeDisplaySetiingAndTable={props.changeDisplaySetiingAndTable}/>
+                <ModalSettingTeamDetail test={props.test} dataUser={dataUser} changeDisplaySetiingAndTable={props.changeDisplaySetiingAndTable}/>
             </div>
         </div>
 

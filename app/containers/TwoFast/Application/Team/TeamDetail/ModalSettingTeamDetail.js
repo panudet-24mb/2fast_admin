@@ -3,15 +3,13 @@ import React,{ useState } from 'react'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import SettingsIcon from '@material-ui/icons/Settings';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import red from '@material-ui/core/colors/red'
 import Swal from 'sweetalert2'
 import axios from 'axios';
 import * as api from '../../../services/api';
-import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -36,6 +34,7 @@ export default function ModalSettingTeamDetail(props) {
     const [open, setOpen] = useState(false);
     const [dataTeam, setDataTeamr] = useState(props.dataUser)
 
+    const switchIcon = props.test
     const onchangeDisplaySetiingAndTable = () => {
         props.changeDisplaySetiingAndTable()
     }
@@ -91,32 +90,29 @@ export default function ModalSettingTeamDetail(props) {
 
     return (
     <div>
-        <IconButton color="primary" aria-label="setting" component="span" style={{ bottom:'7px', right:'10px' }}
-            onClick={onchangeDisplaySetiingAndTable}
-        >
-            <SettingsIcon />
-        </IconButton>
+        {
+            switchIcon === true &&(
+                <div>
+                    <IconButton color="primary" aria-label="setting" component="span" style={{ bottom:'7px', right:'10px' }}
+                        onClick={onchangeDisplaySetiingAndTable}
+                    >
+                        <ArrowBackIosIcon />
+                    </IconButton>
+                </div>
+            )
+        }
 
-
-        {/*<Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-            timeout: 500,
-            }}
-        >
-        <Fade in={open}>
-          <div className={classes.paper}>
-          <p>Setting team</p>
-            <Button className={classes.redColor} variant="contained" color="secondary" onClick={() => showTest()}>delete team</Button>
-          </div>
-        </Fade>
-        </Modal>*/}
+        {
+            switchIcon === false &&(
+                <div>
+                    <IconButton color="primary" aria-label="setting" component="span" style={{ bottom:'7px', right:'10px' }}
+                        onClick={onchangeDisplaySetiingAndTable}
+                    >
+                        <SettingsIcon />
+                    </IconButton>
+                </div>
+            )
+        }
 
     </div>
     )

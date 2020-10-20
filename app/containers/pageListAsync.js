@@ -91,3 +91,13 @@ export const TeamDetail = Loadable({
   loader: () => import('./TwoFast/Application/Team/TeamDetail/TeamDetail'),
   loading: Loading,
 });
+/* ------ 2Fast project ------- */
+export const ListProject = Loadable({
+  loader: () => import('./TwoFast/Application/Project/ListProject/ListProject'),
+  loading: Loading,
+});
+
+export const DetailProject = Loadable({
+  loader: () => import('./TwoFast/Application/Project/detailProjectInCard/DetailProject'),
+  loading: Loading,
+});

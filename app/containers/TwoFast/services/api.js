@@ -19,7 +19,7 @@ export const GetUserList = (token) => {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
     },
-    data: { team_name: 'It support' },
+    data: { team_name: 'It support' }
   };
 };
 

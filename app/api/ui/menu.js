@@ -249,6 +249,12 @@ module.exports = [
         title: true,
       },
       {
+        key: 'Project',
+        name: 'Project',
+        icon: 'pie_chart',
+        link: '/app/project',
+      },
+      {
         key: 'view_all_project',
         name: 'View All Project',
         icon: 'next_week',

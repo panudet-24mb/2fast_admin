@@ -85,6 +85,10 @@ const ManageTeam = (props) => {
       setTeamData(res.data.message);
     })
     .catch((err) => {
+      if(err.response.status === 401){
+        history.push("/")
+        localStorage.removeItem('token')
+      } 
       console.log(err);
     });
   }

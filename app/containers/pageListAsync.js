@@ -76,7 +76,7 @@ export const Testlib = Loadable({
 });
 /* ------ 2Fast page ------- */
 export const ManageUser = Loadable({
-  loader: () => import('./TwoFast/Application/Users/ManageUser/ManageUser'),
+  loader: () => import('./TwoFast/Application/Users/ManageNewUser/ManageUser'),
   loading: Loading,
 });
 export const ManageTeam = Loadable({

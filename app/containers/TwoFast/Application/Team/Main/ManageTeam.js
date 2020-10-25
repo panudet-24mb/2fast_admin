@@ -65,7 +65,6 @@ const ManageTeam = (props) => {
     axios(config).then((res) => {
       check()
       setNewTeam(false)
-      console.log(res);
     });
   };
 

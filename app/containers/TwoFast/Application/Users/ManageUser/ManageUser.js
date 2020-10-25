@@ -53,6 +53,7 @@ const ManageUser = (props) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const config = api.GetUserList(token);
+    checkDetailAdmin()
     axios(config)
       .then((res) => {
         // console.log(res.data.message);
@@ -63,6 +64,16 @@ const ManageUser = (props) => {
         console.log(err);
       });
   }, []);
+
+  const checkDetailAdmin = () => {
+    const token = localStorage.getItem('token');
+    const config = api.CHECK_DETAIL_ADMMIN(token);
+    axios(config)
+    .then(res=> {
+      //console.log(res.data.message)
+    })
+    .catch(err => console.log(err))
+  }
 
   const newUserPopModal = () => {
     setNewUserModal(true);

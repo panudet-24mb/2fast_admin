@@ -1,4 +1,17 @@
 /* eslint-disable */
+/* -------------------------------------- Unknow -------------------------------------- */
+
+export const GetUserList = (token) => {
+  return {
+    method: 'get',
+    url: 'http://www.2fast.online:5000/api/v2/users',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    }
+  };
+};
+
 /* -------------------------------------- Login -------------------------------------- */
 export const ADMIN_LOGIN = (data) => {
   return {
@@ -11,15 +24,15 @@ export const ADMIN_LOGIN = (data) => {
   };
 };
 /* -------------------------------------- Member Services -------------------------------------- */
-export const GetUserList = (token) => {
+
+export const CHECK_DETAIL_ADMMIN = (token) => {
   return {
     method: 'get',
-    url: 'http://www.2fast.online:5000/api/v2/users',
+    url: 'http://www.2fast.online:5000/api/v2/member/admin',
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
-    },
-    data: { team_name: 'It support' }
+    }
   };
 };
 
@@ -34,7 +47,7 @@ export const MANAGE_TEAM_GET_TEAMLIST = (token) => {
     data: { team_name: 'It support' },
   };
 };
-
+/* -------------------------------------- Team Services -------------------------------------- */
 export const CREATE_NEW_TEAM = (token, data) => {
   return {
     method: 'post',

@@ -1,66 +1,23 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import MUIDataTable from 'mui-datatables';
-// import { usePopper } from 'react-popper';
-// import { createPopper } from '@popperjs/core';
 import Avatar from 'react-avatar';
-// import { MDBDataTableV5 } from 'mdbreact';
 import {
   makeStyles,
   createMuiTheme,
   MuiThemeProvider,
 } from '@material-ui/core/styles';
+import { Button, Modal, Input  } from 'antd';
 import {
-  Tooltip,
   Chip,
-  IconButton,
-  Popper,
-  List,
-  ListItem,
-  Divider,
+  IconButton
 } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';
-
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
-import MoreVert from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
-
-import { userData } from '../dummy-data/dummy-user';
-
-// const getMuiTheme = () =>
-//   createMuiTheme({
-//     overrides: {
-//       MuiPaper: {
-//         rounded: {
-//           borderRadius: '11px',
-//         },
-//       },
-//       MuiTableCell: {
-//         root: {
-//           padding: 3,
-//         },
-//       },
-//       MUIDataTable: {
-//         root: {
-//           backgroundColor: '#FF000',
-//         },
-//       },
-//       MUIDataTableBodyCell: {
-//         root: {
-//           // backgroundColor: '#FF0000',
-//         },
-//       },
-//       MuiTypography: {
-//         root: {},
-//         h6: {
-//           paddingTop: '27px',
-//         },
-//       },
-//     },
-//   });
+import { UserOutlined } from '@ant-design/icons';
+import EditUser from './EditUser'
+import CreateDetailUser from './CreateDetailUser'
+import Lottie from 'lottie-react-web'
+import no_create_user from '../Animation/no_create_user.json'
 
 const useStyles = makeStyles((theme) => ({
   userAction: {
@@ -76,53 +33,37 @@ const useStyles = makeStyles((theme) => ({
       '& td': {
         wordBreak: 'keep-all',
       },
-      // [theme.breakpoints.down('md')]: {
-      //   '& td': {
-      //     height: 60,
-      //     overflow: 'hidden',
-      //     textOverflow: 'ellipsis',
-      //   },
-      // },
     },
   },
 }));
 
-const UserDataTable = (props) => {
+const UserTable = (props) => {
   const classes = useStyles();
-  const { users, userStatus, popMenu, closeMenu, data } = props;
+  const { listUser, limitCreateUser } = props;
+  const [visible, setVisible] = useState(false);
+  const [user, setUser] = useState()
 
-  // const [anchorEl, setAnchorEl] = useState(null);
-
+  
   const tableData = [];
-  data.map((el) => {
-    tableData.push([el.userdetails_avatar, el.user_username, el.userdetails_firstname, el.userdetails_lastname, "User", el.user_is_active, el]);
+
+  listUser.map((el) => {
+    tableData.push([el.user_username, el.user_username, el.userdetails_firstname, el.userdetails_lastname, "User", el.user_is_active, el]);
   });
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event) => {    
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
-  // console.log(anchorEl);
-
-  useEffect(() => {
-    // console.log(data);
-    // console.log(tableData);
-  }, [data]);
 
   const state = {
     columns: [
       {
         name: 'Avatar',
-
         options: {
           filter: true,
-          setCellHeaderProps: () => ({ style: {display: 'flex', justifyContent: 'center' }}),
+          //setCellHeaderProps: () => ({ style: {display: 'flex', justifyContent: 'center' }}),
           customBodyRender: (value) => {
             return (
-              <div>
-                 <Avatar style={{ display: 'flex', marginLeft:'auto', marginRight:'auto' }} name={value} size="35" round={true} /> 
+            //   <div>
+            //      <Avatar style={{ display: 'flex', marginLeft:'auto', marginRight:'auto' }} name={value} size="35" round={true} /> 
+            //   </div>
+            <div>
+                 <Avatar name={value} size="35" round={true} /> 
               </div>
             );
           },
@@ -210,15 +151,20 @@ const UserDataTable = (props) => {
         },
       },
       {
-        name: 'Edit',
+        name: '',
         options: {
           filter: true,
           customBodyRender: (value) => {
-            return (
-              <div>
-                  <button onClick={() => console.log(value)}>Edit</button>
-              </div>
-            );
+            
+            if(value.userdetails_firstname === null){
+                return (
+                  <CreateDetailUser value={value} checkData={props.checkData}/>
+                );
+            } else {
+                return (
+                  <EditUser value={value} checkData={props.checkData}/>
+                );
+            }
           },
         },
       },
@@ -237,34 +183,39 @@ const UserDataTable = (props) => {
 
   return (
     <div className={classes.table}>
-      <MUIDataTable
+    <br />
+
+    {
+      limitCreateUser.current_user_active !== 0 && (
+        <MUIDataTable
         title={
-          'User lists ( ' + users.currentUsers + ' / ' + users.MAX_USERS + ' )'
+            <h3 style={{ fontWeight:'bold', color:'#6c757d' }}>Limit create user {`( ${limitCreateUser.current_user_active} / ${limitCreateUser.user_limit} )`} </h3>
         }
         columns={state.columns}
         data={state.data}
         options={options}
-      />
-
-      {/*<Popper
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        placement="left-start"
-        style={{ zIndex: 1000 }}
-      >
-        <Paper elevation={2}>
-          <List component="nav">
-            <ListItem button onClick={handleClick}>Edit user</ListItem>
-             
-            <ListItem button>None</ListItem>
-          </List>
-        </Paper>
-      </Popper>*/}
-    
+      /> 
+      )
+    }
+    {
+      limitCreateUser.current_user_active === 0 && (
+        <div style={{width:'100%'}}>
+            <h1 style={{ textAlign:'center', color:'#6c757d' }}>No User Create</h1>
+            <h5 style={{ textAlign:'center', color:'#6c757d' }}>Please create user</h5>
+                <Lottie
+                    height={400}
+                    options={{
+                          animationData: no_create_user
+                            }}
+                          />
+        </div>
+      )
+    }
 
     </div>
   );
 };
 
-export default UserDataTable;
+export default UserTable;
+
+// value={this.state.someVal || ''}

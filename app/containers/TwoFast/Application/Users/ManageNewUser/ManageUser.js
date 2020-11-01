@@ -13,7 +13,7 @@ export default function ManageUser() {
     const [visible, setVisible] = useState(false);
     const [companyPublicID, setCompanyPublicID] = useState(null)
     const [newUser, setNewUser] = useState({ user_username : null, user_password: null})
-
+    localStorage.removeItem("detailProject")
     
     useEffect(() => {
         // async function chekUserList() {
@@ -134,7 +134,6 @@ export default function ManageUser() {
 
     const cancleCreateNewUser = () =>{
         setVisible(false)
-        setNewUser({ user_username : null, user_password: null})
     }
 
     const checkData = () => {
@@ -170,10 +169,10 @@ export default function ManageUser() {
             // width={1000}
         >
             <p>Username</p>
-            <Input placeholder="Username" onChange={(e) => setNewUser({...newUser, user_username:e.target.value })} />
+            <Input placeholder="Username" onBlur={(e) => setNewUser({...newUser, user_username:e.target.value })} />
             <br /><br />
             <p>Password</p>
-            <Input type="password" placeholder="Password" onChange={(e) => setNewUser({...newUser, user_password:e.target.value })} />
+            <Input type="password" placeholder="Password" onBlur={(e) => setNewUser({...newUser, user_password:e.target.value })} />
             <br /><br />
             <Button onClick={() => cancleCreateNewUser()}>Discard</Button>
             <Button style={{ left:'10px' }} type="primary" onClick={() =>createNewUser()}>Create</Button>

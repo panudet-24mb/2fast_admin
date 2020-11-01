@@ -31,16 +31,8 @@ export default function ListProject() {
         status_id : 1,
         project_number : ""
     })
-
+    localStorage.removeItem("detailProject")
     const cleatState = () =>{
-        setDataProject({
-            project_name :"",
-            project_desc : "",
-            project_startdate :"",
-            project_enddate : "",
-            status_id : 1,
-            project_number : ""
-        })
         setModalVisible(false)
     }
 
@@ -92,14 +84,14 @@ export default function ListProject() {
         if(listProject.length === 0 ){
             return(
                 <div style={{width:'100%'}}>
-                                <h1 style={{ textAlign:'center', color:'#6c757d' }}>No Project Create</h1>
-                                <h5 style={{ textAlign:'center', color:'#6c757d' }}>Please create your project</h5>
-                                    <Lottie
-                                        height={400}
-                                            options={{
-                                            animationData: no_project
-                                            }}
-                                    />
+                    <h1 style={{ textAlign:'center', color:'#6c757d' }}>No Project Create</h1>
+                    <h5 style={{ textAlign:'center', color:'#6c757d' }}>Please create your project</h5>
+                        <Lottie
+                            height={400}
+                            options={{
+                                    animationData: no_project
+                                    }}
+                        />
                 </div>
             )
         } else {
@@ -150,11 +142,11 @@ export default function ListProject() {
             onCancel={() => setModalVisible(false)}
         >
        <p>Project name</p>
-        <Input placeholder="Project name" onChange={(e) => setDataProject({...dataProject, project_name:e.target.value })} />
+        <Input placeholder="Project name" onBlur={(e) => setDataProject({...dataProject, project_name:e.target.value })} />
         <br /><br />
 
         <p>Project number</p>
-        <Input placeholder="Project number" onChange={(e) => setDataProject({...dataProject, project_number:e.target.value })} />
+        <Input placeholder="Project number" onBlur={(e) => setDataProject({...dataProject, project_number:e.target.value })} />
         <br /><br />
 
         <p>Start date</p>
@@ -166,7 +158,7 @@ export default function ListProject() {
         <br /><br />
 
         <p>Project description</p>
-        <TextArea placeholder="Project description" onChange={(e) => setDataProject({...dataProject, project_desc:e.target.value })} />
+        <TextArea placeholder="Project description" onBlur={(e) => setDataProject({...dataProject, project_desc:e.target.value })} />
 
         <br /><br />
   

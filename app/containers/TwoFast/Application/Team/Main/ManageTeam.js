@@ -29,7 +29,7 @@ const useStyles = ManageTeamStyle;
 const ManageTeam = (props) => {
   const classes = useStyles();
   const history = useHistory();
-
+  localStorage.removeItem("detailProject")
   const { handleSubmit, errors, control } = useForm({
     defaultValues: {
       team_name : "",
@@ -121,7 +121,7 @@ const ManageTeam = (props) => {
 
           <div className="col-6 mt-2">
             <TextField id="outlined-basic" label="Team name" variant="outlined" 
-              onChange={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} style={{ marginRight:'50px' }}/>
+              onBlur={(e) => setDataTeam({...dataTeam, team_name : e.target.value})} style={{ marginRight:'50px' }}/>
           </div>
        </div>
         

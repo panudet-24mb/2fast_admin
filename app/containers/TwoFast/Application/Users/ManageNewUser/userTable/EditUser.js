@@ -29,8 +29,7 @@ const layout = {
 export default function EditUser(props) {
     const [detailUser, setDetailUser] = useState(props.value)
     const [visible, setVisible] = useState(false)
-    const [addNewDatail, setAddNewDatail] = useState({
-      })
+    const [addNewDatail, setAddNewDatail] = useState({})
 
     const handleChange = e =>{
         const {name, value} = e.target
@@ -137,7 +136,7 @@ export default function EditUser(props) {
                     name="firstname"
                    
                 >
-                    <Input  placeholder={detailUser.userdetails_firstname} name="userdetails_firstname" onChange={(e) => handleChange(e)} />
+                    <Input  placeholder={detailUser.userdetails_firstname} name="userdetails_firstname" onBlur={(e) => handleChange(e)} />
                 </Form.Item>
 
                 <Form.Item
@@ -145,7 +144,7 @@ export default function EditUser(props) {
                     name="Lastname"
                     
                 >
-                    <Input placeholder={detailUser.userdetails_lastname} name="userdetails_lastname" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder={detailUser.userdetails_lastname} name="userdetails_lastname" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -153,7 +152,7 @@ export default function EditUser(props) {
                     name="EmployeeID"
                     
                 >
-                    <Input placeholder={detailUser.userdetails_employee_id} name="userdetails_employee_id" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder={detailUser.userdetails_employee_id} name="userdetails_employee_id" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -161,7 +160,7 @@ export default function EditUser(props) {
                     name="position"
                     
                 >
-                    <Input placeholder={detailUser.userdetails_position} name="userdetails_position" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder={detailUser.userdetails_position} name="userdetails_position" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -169,7 +168,7 @@ export default function EditUser(props) {
                     name="phone"
                     
                 >
-                    <Input placeholder={detailUser.userdetails_phone} name="userdetails_phone" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder={detailUser.userdetails_phone} name="userdetails_phone" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -177,7 +176,7 @@ export default function EditUser(props) {
                     name="Email"
                     
                 >
-                    <Input placeholder={detailUser.userdetails_email} name="userdetails_email" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder={detailUser.userdetails_email} name="userdetails_email" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>

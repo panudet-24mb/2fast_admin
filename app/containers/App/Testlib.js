@@ -6,7 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 
 const Testlib = () => {
   const { handleSubmit, control } = useForm();
-
+  localStorage.removeItem("detailProject")
   return (
     <div>
       <form onSubmit={handleSubmit((data) => console.log(data))}>

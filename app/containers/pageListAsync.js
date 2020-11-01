@@ -101,3 +101,8 @@ export const DetailProject = Loadable({
   loader: () => import('./TwoFast/Application/Project/detailProjectInCard/DetailProject'),
   loading: Loading,
 });
+/* ------ 2Fast job ------- */
+export const DetailJob = Loadable({
+  loader: () => import('./TwoFast/Application/Job/detailJob/DetailJob'),
+  loading: Loading,
+});

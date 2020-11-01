@@ -45,14 +45,6 @@ export default function CreateDetailUser(props) {
 
     const clear = () =>{
         setVisible(false)
-        setAddNewDatail({
-            userdetails_employee_id : '' , 
-            userdetails_firstname : '' , 
-            userdetails_lastname : '' , 
-            userdetails_phone : '' , 
-            userdetails_email : '' , 
-            userdetails_position : '' 
-          })
     }
 
     const createDetailUser = () =>{
@@ -149,7 +141,7 @@ export default function CreateDetailUser(props) {
                     name="firstname"
                     rules={[{ required: true, message: 'Please input your firstname' }]}
                 >
-                    <Input  placeholder="Firstname" name="userdetails_firstname" onChange={(e) => handleChange(e)} />
+                    <Input  placeholder="Firstname" name="userdetails_firstname" onBlur={(e) => handleChange(e)} />
                 </Form.Item>
 
                 <Form.Item
@@ -157,7 +149,7 @@ export default function CreateDetailUser(props) {
                     name="Lastname"
                     rules={[{ required: true, message: 'Please input your Lastname' }]}
                 >
-                    <Input placeholder="Lastname" name="userdetails_lastname" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder="Lastname" name="userdetails_lastname" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -165,7 +157,7 @@ export default function CreateDetailUser(props) {
                     name="EmployeeID"
                     rules={[{ required: true, message: 'Please input your Employee ID' }]}
                 >
-                    <Input placeholder="Employee ID" name="userdetails_employee_id" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder="Employee ID" name="userdetails_employee_id" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -173,7 +165,7 @@ export default function CreateDetailUser(props) {
                     name="position"
                     rules={[{ required: true, message: 'Please input your position' }]}
                 >
-                    <Input placeholder="Position" name="userdetails_position" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder="Position" name="userdetails_position" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -181,7 +173,7 @@ export default function CreateDetailUser(props) {
                     name="phone"
                     rules={[{ required: true, message: 'Please input your phone' }]}
                 >
-                    <Input placeholder="Phone" name="userdetails_phone" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder="Phone" name="userdetails_phone" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -189,7 +181,7 @@ export default function CreateDetailUser(props) {
                     name="Email"
                     rules={[{ required: true, message: 'Please input your Email' }]}
                 >
-                    <Input placeholder="E-Mail" name="userdetails_email" onChange={(e) => handleChange(e)}/>
+                    <Input placeholder="E-Mail" name="userdetails_email" onBlur={(e) => handleChange(e)}/>
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>

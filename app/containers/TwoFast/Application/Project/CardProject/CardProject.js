@@ -9,16 +9,20 @@ const { TabPane } = Tabs;
 
 export default function CardProject(props) {
     const history = useHistory();
+    const linkPage=()=>{
+        localStorage.setItem('detailProject', JSON.stringify(props.data)),
+                                 history.push({
+                                       pathname: "/app/project/"+props.data.project_name,
+                                       state: { detail: props.data }
+                                 })
+    }
     return (
     <div className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-6 ant-col-xl-6" >
         <Card hoverable type="inner" title={<span>{props.data.project_name}
                         <CheckCircleTwoTone twoToneColor="#52c41a" 
                         style={{ fontSize: '16px', position:'relative', bottom:'3px', left:'5px' }}  /> </span>} 
                         bordered={true} style={{ height:'400px', margin:'20px', width:'90%' }}
-                        onClick={() => history.push({
-                                       pathname: "/app/project/"+props.data.project_name,
-                                       state: { detail: props.data }
-                                 })}
+                        onClick={() => linkPage()}
         >
             <Tabs defaultActiveKey="1">
                 <TabPane tab="About" key="1" >

@@ -11,10 +11,17 @@ import Box from '@material-ui/core/Box';
 import DatailAdminControler from './DatailAdminControler'
 import DataTableTeamDetailMember from './dataTableTeam/DataTableTeamDetailMember'
 import SettingTeam from './SettingTeam'
+import axios from 'axios'
+import * as api from '../service/api'
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Switch from '@material-ui/core/Switch';
+import Paper from '@material-ui/core/Paper';
+import Fade from '@material-ui/core/Fade';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+    localStorage.removeItem("detailProject")
     return (
       <div
         role="tabpanel"
@@ -49,14 +56,48 @@ function TabPanel(props) {
     root: {
       backgroundColor: theme.palette.background.paper
     },
+    zIndexAlert : {
+      zIndex:'100'
+    }
   }));
-
+  
 export default function TeamDetail(props) {
+    const classes = useStyles();
     const [detailTeam, setDetailTeam] = useState(props.location.state.detail)
     const [test, setTest] = useState(false)
-    const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = useState(0);
+
+    const [dataToAdd, setDataToAdd] = useState([])
+    const [dataToRemove, setDataToRemove] = useState([])
+
+    useEffect(() => {
+      checkDashboardUserInTeam()
+      checkListUser()
+
+      return () => {
+        
+      }
+    }, [])
+
+    function checkListUser() {
+
+      const token = localStorage.getItem('token');
+      const config = api.GET_USER_LIST(token);
+      axios(config).then( res=> {
+        setDataToAdd(res.data.message);
+      })
+    }
+
+    const checkDashboardUserInTeam = () =>{
+
+      const token = localStorage.getItem('token');
+      const config = api.GET_USER_IN_TEAM_LIST(token,props.location.state.detail.team_id,props.location.state.detail.team_name);
+      axios(config).then( res=> {
+        setDataToRemove(res.data.team_member)
+      })
+    }
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -74,62 +115,121 @@ export default function TeamDetail(props) {
         }
     }
 
-    useEffect(() => {
-        // console.log(detailTeam)
-      }, []);
+    const [checked, setChecked] = useState(false);
+
+    const AddSuccess = () => {
+      setChecked((prev) => !prev);
+      setTimeout(() => {
+        setChecked((prev) => !prev);
+      }, 3000);
+    };
+
+    const [checkedError, setCheckedError] = useState(false);
+
+    const AddError = () => {
+      checkDashboardUserInTeam()
+      setCheckedError((prev) => !prev);
+      setTimeout(() => {
+        setCheckedError((prev) => !prev);
+      }, 3000);
+    };
+
+    const [checkedAlready, setCheckedAlready] = useState(false);
+
+    const userAlready = () => {
+      setCheckedAlready((prev) => !prev);
+      setTimeout(() => {
+        setCheckedAlready((prev) => !prev);
+      }, 3000);
+    };
   
     return (
-            <div className="row">
+      <div>
+          <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3">
-                    <DatailAdminControler test={test} detailTeam={detailTeam} changeDisplaySetiingAndTable={changeDisplaySetiingAndTable}/>
+                    <DatailAdminControler userAlready={userAlready}
+                      AddError={AddError} checkDashboardUserInTeam={checkDashboardUserInTeam}
+                        AddSuccess={AddSuccess} checkListUser={checkListUser} dataToAdd={dataToAdd} 
+                        test={test} detailTeam={detailTeam} changeDisplaySetiingAndTable={changeDisplaySetiingAndTable}
+                        />
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9">
-                <div className={classes.root}>
-                { test === true &&(
-                  <SettingTeam detailTeam={detailTeam}/>
-                )}
+                      <div className={classes.root}>
+                          { test === true &&(
+                            <SettingTeam detailTeam={detailTeam}/>
+                          )}
 
-                { test === false &&(
-                  <div>
-                  <AppBar position="static" color="default">
-                  <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    variant="fullWidth"
-                    aria-label="full width tabs example"
-                  >
-                    <Tab label="Member" {...a11yProps(0)} />
-                    <Tab label="Status" {...a11yProps(1)} />
-                    <Tab label="Subteams" {...a11yProps(2)} />
-                    <Tab label="Projects" {...a11yProps(3)} />
-                  </Tabs>
-                </AppBar>
-                <SwipeableViews
-                  axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                  index={value}
-                  onChangeIndex={handleChangeIndex}
-                >
-                  <TabPanel value={value} index={0} dir={theme.direction}>
-                        <DataTableTeamDetailMember />
-                  </TabPanel>
-                  <TabPanel value={value} index={1} dir={theme.direction}>
-                    Item Two
-                  </TabPanel>
-                  <TabPanel value={value} index={2} dir={theme.direction}>
-                    Item Three
-                  </TabPanel>
-                  <TabPanel value={value} index={3} dir={theme.direction}>
-                    Item Three
-                  </TabPanel>
-                </SwipeableViews>
-                  </div>
-                )}
-
-              </div>
+                      { test === false &&(
+                        <div>
+                            <AppBar position="static" color="default">
+                                <Tabs
+                                  value={value}
+                                  onChange={handleChange}
+                                  indicatorColor="primary"
+                                  textColor="primary"
+                                  variant="fullWidth"
+                                  aria-label="full width tabs example"
+                                >
+                                  <Tab label="User" {...a11yProps(0)} />
+                                 {/* <Tab label="Status" {...a11yProps(1)} />
+                                  <Tab label="Subteams" {...a11yProps(2)} />
+                      <Tab label="Projects" {...a11yProps(3)} />*/}
+                                </Tabs>
+                            </AppBar>
+                            <SwipeableViews
+                                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                                index={value}
+                                onChangeIndex={handleChangeIndex}
+                            >
+                                  <TabPanel value={value} index={0} dir={theme.direction}>
+                                        <DataTableTeamDetailMember 
+                                          checkDashboardUserInTeam={checkDashboardUserInTeam} 
+                                          dataToRemove={dataToRemove} dataTeam={props.location.state.detail}
+                                        />
+                                  </TabPanel>
+                    { /*             <TabPanel value={value} index={1} dir={theme.direction}>
+                                    Item Two
+                                  </TabPanel>
+                                  <TabPanel value={value} index={2} dir={theme.direction}>
+                                    Item Three
+                                  </TabPanel>
+                                  <TabPanel value={value} index={3} dir={theme.direction}>
+                                    Item Three
+                      </TabPanel>*/}
+                            </SwipeableViews>
+                        </div>
+                      )}
+                    </div>
                 </div>
+          </div>
+            <div className="row" >
+                  <div className="col-8" />
+                  <div className="col">
+                
+                          <Fade direction="up" in={checked}>
+                              <Alert variant="filled" severity="success" color="info" >
+                                  <h4 style={{color:'#FFF'}}>User successfully added</h4>
+                              </Alert>
+                          </Fade>
+
+                          <Fade direction="up" in={checkedError}>
+                              <Alert variant="filled" severity="error">
+                                  <h4 style={{color:'#FFF'}}>Error Please try again</h4>
+                              </Alert>
+                          </Fade>
+
+                          <Fade direction="up" in={checkedAlready}>
+                              <Alert variant="filled" severity="warning" style={{ marginTop:'-150px' }} >
+                                  <h4 style={{color:'#FFF'}}>User already in team</h4>
+                              </Alert>
+                          </Fade>
+                   
+                  </div>
             </div>
+
+          
+          
+      </div>
      
     )
 }

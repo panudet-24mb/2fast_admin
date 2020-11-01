@@ -53,8 +53,8 @@ export default function EditProject(props) {
     const onChangeEnd = (value, dateString) => {
         setDataProject({...dataProject, project_enddate : dateString})
     }
+    
     const cleatState = () =>{
-        setDataProject(props.dataProject)
         setToggle()
     }
     const EditProject = () => {
@@ -106,13 +106,13 @@ export default function EditProject(props) {
                 <Expand open={open} duration={500}>
                     <div style={{ width: '100%', borderRadius:'17px', padding:'10px' }}>
                             <p>You can edit team project anytime !</p>
-                            <p>Project name</p>
 
-                            <Input placeholder={dataProject.project_name} onChange={(e) => setDataProject({...dataProject, project_name:e.target.value })} />
+                            <p>Project name</p>
+                            <Input placeholder={dataProject.project_name} onBlur={(e) => setDataProject({...dataProject, project_name:e.target.value })} />
                             <br /><br />
 
                             <p>Project number</p>
-                            <Input placeholder={dataProject.project_number}  onChange={(e) => setDataProject({...dataProject, project_number:e.target.value })} />
+                            <Input placeholder={dataProject.project_number}  onBlur={(e) => setDataProject({...dataProject, project_number:e.target.value })} />
                             <br /><br />
 
                             <p>Start date</p>
@@ -124,7 +124,7 @@ export default function EditProject(props) {
                             <br /><br />
 
                             <p>Project description</p>
-                            <TextArea placeholder={dataProject.project_desc} onChange={(e) => setDataProject({...dataProject, project_desc:e.target.value })} />
+                            <TextArea placeholder={dataProject.project_desc} onBlur={(e) => setDataProject({...dataProject, project_desc:e.target.value })} />
 
                             <br /><br />
                     

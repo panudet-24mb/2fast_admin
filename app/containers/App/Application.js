@@ -16,7 +16,8 @@ import {
   UserDetail,
   Testlib,
   ListProject,
-  DetailProject
+  DetailProject,
+  DetailJob
 } from '../pageListAsync';
 
 class Application extends React.Component {
@@ -42,7 +43,8 @@ class Application extends React.Component {
           <Route path="/app/testlib" component={Testlib} />
 
           <Route exact path="/app/project" component={ListProject} />
-          <Route path="/app/project/:projectid" component={DetailProject} />
+          <Route exact path="/app/project/:projectid" component={DetailProject} />
+          <Route path="/app/project/:projectid/:jobid" component={DetailJob} />
           <Route component={NotFound} />
         </Switch>
       </Dashboard>

@@ -44,3 +44,28 @@ export const GET_ALL_PROJECT = (token) => {
       data : data
     };
   };
+
+  //----------- DetailProjectInCard-------------//
+  //----------- AddTeamAndUserInProject-------------//
+  export const FIND_USER_LIST = (token) => {
+    return {
+      method: 'get',
+      url: 'http://www.2fast.online:5000/api/v2/users',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
+      }
+    };
+  };
+
+  export const FIND_TEAM_LIST = (token) => {
+    return {
+    method: 'get',
+    url: 'http://www.2fast.online:5000/api/v2/team',
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data: { team_name: 'It support' },
+  };
+  };

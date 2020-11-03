@@ -4,6 +4,7 @@ import { Tabs } from 'antd';
 import DeleteProject from './components/DeleteProject'
 import EditProject from './components/EditProject'
 import JobList from '../../Job/JobList'
+import AddTeamAndUserInProject from './AddTeamAndUserInProject/AddTeamAndUserInProject'
 
 const { TabPane } = Tabs;
 
@@ -24,7 +25,7 @@ export default function DetailProject() {
                     Milestones
                 </TabPane>
                 <TabPane tab="Team & People" key="4">
-                    Team & People
+                    <AddTeamAndUserInProject detailProject={detailProject}/>
                 </TabPane>
                 <TabPane tab="Setting" key="5">
                     <EditProject dataProject={detailProject}/>

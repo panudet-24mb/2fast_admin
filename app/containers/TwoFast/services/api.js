@@ -43,8 +43,7 @@ export const MANAGE_TEAM_GET_TEAMLIST = (token) => {
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
-    },
-    data: { team_name: 'It support' },
+    }
   };
 };
 /* -------------------------------------- Team Services -------------------------------------- */

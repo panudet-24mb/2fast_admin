@@ -81,7 +81,7 @@ const ManageTeam = (props) => {
     const config = api.MANAGE_TEAM_GET_TEAMLIST(token);
     axios(config)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setTeamData(res.data.message);
     })
     .catch((err) => {

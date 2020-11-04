@@ -52,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdvFilter = (props) => {
-  console.log(props);
+  // console.log(props);
   useEffect(() => {
-    console.log(TEAM_LIST);
+    // console.log(TEAM_LIST);
   }, []);
 
   const classes = useStyles();

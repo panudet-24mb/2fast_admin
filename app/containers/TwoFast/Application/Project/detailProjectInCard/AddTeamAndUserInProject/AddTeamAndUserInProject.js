@@ -8,35 +8,81 @@ import { Modal, Button } from 'antd';
 import axios from 'axios'
 import * as api from '../../service/api_project'
 import ListUserTable from './ListUserTable'
+import ListTeamTable from './ListTeamTable'
 
 export default function AddTeamAndUserInProject(props) {
     const classes = CardInfoStyle();
     const [visibleTeam, setVisibleTeam] = useState(false);
     const [visibleUser, setVisibleUser] = useState(false);
     const [allUser, setAllUser] = useState([])
+    const [allTeam, setAllTeam] = useState([])
 
-    //console.log(props.detailProject);
+    const [user, setUser] = useState([])
+    const [team, setTeam] = useState([])
+    const [allData, setAllData] = useState([])
+
+    // console.log(props.detailProject.project_id);
+    
+    async function listUser(){
+        console.log('1');
+        const token = localStorage.getItem('token');
+        const config = api.FIND_USER_LIST(token);
+        const result = await axios(config)
+        setAllUser(result.data.message);
+    }
+
+    async function listTeam(){
+        console.log('2');
+        const token = localStorage.getItem('token');
+        const config = api.FIND_TEAM_LIST(token);
+        const result = await  axios(config)
+        setAllTeam(result.data.message);
+    }
+
+    async function listTeamInProject(){
+        console.log('3');
+        const token = localStorage.getItem('token');
+        const config = api.CHECK_TEAM_IN_PROJECT(token, props.detailProject.project_id);
+        const result = await  axios(config)
+        setTeam(result.data.payload.team);
+    }
+    async function  listUserInProject(){
+        console.log('4');
+        const token = localStorage.getItem('token');
+        const config = api.CHECK_USER_IN_PROJECT(token, props.detailProject.project_id);
+        const result = await  axios(config)
+        setUser(result.data.payload.user);
+    }
+
+    async function  concatData(){
+        console.log('5');
+        const testCC =  user.concat(team)
+        console.log(testCC);
+            setAllData(testCC)
+        
+    }
 
     useEffect(() => {
         listUser()
         listTeam()
+        listTeamInProject()
+        listUserInProject()
+
         return () => {
-            
+           console.log('return');
+
         }
     }, [])
-    
-    const listUser =()=> {
-        const token = localStorage.getItem('token');
-        const config = api.FIND_USER_LIST(token);
-        axios(config).then(res => setAllUser(res.data.message))
-    }
 
-    const listTeam =()=> {
-        const token = localStorage.getItem('token');
-        const config = api.FIND_TEAM_LIST(token);
-        // axios(config).then(res => console.log(res.data))
-        // .catch( err => console.log(err))
-    }
+    useEffect(() => {
+
+        concatData()
+        return () => {
+           console.log('return');
+
+        }
+    }, [])
+
 
     return (
         <div>
@@ -80,7 +126,7 @@ export default function AddTeamAndUserInProject(props) {
                     footer={null} 
                     width={1000}  
                 >
-                    <p>Team</p>
+                    <ListTeamTable listTeamInProject={listTeamInProject} allTeam={allTeam} detailProject={props.detailProject}/>
                 </Modal>
 
                 <Modal
@@ -91,13 +137,18 @@ export default function AddTeamAndUserInProject(props) {
                     footer={null}   
                     width={1000}
                 >
-                    <ListUserTable allUser={allUser}/>
+                    <ListUserTable listUserInProject={listUserInProject} allUser={allUser} detailProject={props.detailProject}/>
                 </Modal>
 
 
                 <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                     Table
                    
+                   <button onClick={() => console.log(user)}>user</button>
+                   <button onClick={() => console.log(team)}>team</button>
+                   <button onClick={() => concatData()}>Check</button>
+                   <hr />
+                   {JSON.stringify(allData)}
                 </div>
             </div>
         </div>

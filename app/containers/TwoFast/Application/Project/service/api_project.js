@@ -65,7 +65,63 @@ export const GET_ALL_PROJECT = (token) => {
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
+    }
+  };
+  };
+
+  export const GET_DASHBOARD_TEAM = (token, teamID) => {
+    return {
+    method: 'get',
+    url: `http://www.2fast.online:5000/api/v2/team/${teamID}/dashboard`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    }
+  };
+  };
+  
+  export const CHECK_TEAM_IN_PROJECT = (token, teamID) => {
+    return {
+    method: 'get',
+    url: `http://www.2fast.online:5002/api/v2/projects/project_has_team/${teamID}`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    }
+  };
+  };
+
+  export const CHECK_USER_IN_PROJECT = (token, teamID) => {
+    return {
+    method: 'get',
+    url: `http://www.2fast.online:5002/api/v2/projects/project_has_user/${teamID}`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    }
+  };
+  };
+
+  export const ADD_TEAM_IN_PROJECT = (token,projectID, data) => {
+    return {
+    method: 'post',
+    url: `http://www.2fast.online:5002/api/v2/projects/project_has_team/${projectID}`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
     },
-    data: { team_name: 'It support' },
+    data : data
+  };
+  };
+
+  export const ADD_USER_IN_PROJECT = (token,projectID, data) => {
+    return {
+    method: 'post',
+    url: `http://www.2fast.online:5002/api/v2/projects/project_has_user/${projectID}`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data : data
   };
   };

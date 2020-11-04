@@ -2,11 +2,14 @@
 import React,{ useEffect, useState } from 'react'
 import MUIDataTable from 'mui-datatables';
 import Avatar from 'react-avatar';
+import { AiOutlineUserAdd } from "react-icons/ai";
+import * as api from '../../service/api_project'
+import axios from 'axios'
 
 export default function ListUserTable(props) {
     const [user, setUser] = useState([])
     const tableData = [];
-    console.log(props.allUser);
+    // console.log(props.detailProject);
 
     useEffect(() => {
         mappingData()
@@ -21,6 +24,21 @@ export default function ListUserTable(props) {
           });
           setUser(tableData)
     }
+
+    function addUser(value) {
+      const data = {
+          user_id : value.user_id,
+          is_active : 1 ,
+          status_id : 1
+      }
+      const token = localStorage.getItem('token');
+      const config = api.ADD_USER_IN_PROJECT(token, props.detailProject.project_id, data);
+      axios(config).then(res => {
+          console.log(res.data)
+          props.listUserInProject()
+      })
+      .catch( err => console.log(err))
+  }
 
     const options = {
         filterType: 'dropdown',
@@ -37,6 +55,7 @@ export default function ListUserTable(props) {
                 name: 'Avatar',
                 options: {
                   filter: true,
+                  setCellHeaderProps: () => ({ style: { left:'35px' }}),
                   customBodyRender: (value) => {
                     return (
                         <div>
@@ -51,7 +70,7 @@ export default function ListUserTable(props) {
             options: {
               filter: true,
               customBodyRender: (value) => {
-                return <p>{value}</p>
+                return <h5>{value}</h5>
               },
             },
           },
@@ -60,7 +79,7 @@ export default function ListUserTable(props) {
             options: {
               filter: true,
               customBodyRender: (value) => {
-                return <p>{value}</p>
+                return <h5>{value}</h5>
               },
             },
           },
@@ -69,7 +88,7 @@ export default function ListUserTable(props) {
             options: {
               filter: true,
               customBodyRender: (value) => {
-                return <p>{value}</p>
+                return <h5>{value}</h5>
               },
             },
           },
@@ -78,7 +97,7 @@ export default function ListUserTable(props) {
             options: {
               filter: true,
               customBodyRender: (value) => {
-                return <p onClick={() => console.log(value)}>Add User</p>
+                return <a><AiOutlineUserAdd onClick={() => addUser(value)} size={30} style={{ color:'green' }} /></a>
               },
             },
           },
@@ -89,7 +108,7 @@ export default function ListUserTable(props) {
         <div>
             <MUIDataTable
                 title={
-                    <h3 style={{ fontWeight:'bold', color:'#6c757d' }}> Add User </h3>
+                    <h3 style={{ fontWeight:'bold', color:'#6c757d' }}> Add user in project</h3>
                     }
                 columns={state.columns}
                 data={user}

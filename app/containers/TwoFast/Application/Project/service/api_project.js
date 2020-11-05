@@ -125,3 +125,27 @@ export const GET_ALL_PROJECT = (token) => {
     data : data
   };
   };
+
+  export const DELETE_TEAM_IN_JOB = (token,projectID, data) => {
+    return {
+    method: 'delete',
+    url: `/${projectID}`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data : data
+  };
+  };
+
+  export const DELETE_USER_IN_JOB = (token,projectID, data) => {
+    return {
+    method: 'delete',
+    url: `/${projectID}`,
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    data : data
+  };
+  };

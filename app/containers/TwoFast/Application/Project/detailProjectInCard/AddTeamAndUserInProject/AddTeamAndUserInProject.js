@@ -9,6 +9,7 @@ import axios from 'axios'
 import * as api from '../../service/api_project'
 import ListUserTable from './ListUserTable'
 import ListTeamTable from './ListTeamTable'
+import AllUserInJob from './AllUserInJob'
 
 export default function AddTeamAndUserInProject(props) {
     const classes = CardInfoStyle();
@@ -19,12 +20,10 @@ export default function AddTeamAndUserInProject(props) {
 
     const [user, setUser] = useState([])
     const [team, setTeam] = useState([])
-    const [allData, setAllData] = useState([])
 
     // console.log(props.detailProject.project_id);
     
     async function listUser(){
-        console.log('1');
         const token = localStorage.getItem('token');
         const config = api.FIND_USER_LIST(token);
         const result = await axios(config)
@@ -32,7 +31,6 @@ export default function AddTeamAndUserInProject(props) {
     }
 
     async function listTeam(){
-        console.log('2');
         const token = localStorage.getItem('token');
         const config = api.FIND_TEAM_LIST(token);
         const result = await  axios(config)
@@ -40,27 +38,18 @@ export default function AddTeamAndUserInProject(props) {
     }
 
     async function listTeamInProject(){
-        console.log('3');
         const token = localStorage.getItem('token');
         const config = api.CHECK_TEAM_IN_PROJECT(token, props.detailProject.project_id);
         const result = await  axios(config)
         setTeam(result.data.payload.team);
     }
     async function  listUserInProject(){
-        console.log('4');
         const token = localStorage.getItem('token');
         const config = api.CHECK_USER_IN_PROJECT(token, props.detailProject.project_id);
         const result = await  axios(config)
         setUser(result.data.payload.user);
     }
 
-    async function  concatData(){
-        console.log('5');
-        const testCC =  user.concat(team)
-        console.log(testCC);
-            setAllData(testCC)
-        
-    }
 
     useEffect(() => {
         listUser()
@@ -69,19 +58,18 @@ export default function AddTeamAndUserInProject(props) {
         listUserInProject()
 
         return () => {
-           console.log('return');
+         
 
         }
     }, [])
 
-    useEffect(() => {
-
-        concatData()
-        return () => {
-           console.log('return');
-
-        }
-    }, [])
+    const mainFunction = () => {
+        console.log('mainFunction');
+        listUser()
+        listTeam()
+        listTeamInProject()
+        listUserInProject()
+    }
 
 
     return (
@@ -142,13 +130,7 @@ export default function AddTeamAndUserInProject(props) {
 
 
                 <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                    Table
-                   
-                   <button onClick={() => console.log(user)}>user</button>
-                   <button onClick={() => console.log(team)}>team</button>
-                   <button onClick={() => concatData()}>Check</button>
-                   <hr />
-                   {JSON.stringify(allData)}
+                    <AllUserInJob user={user} team={team} mainFunction={mainFunction} detailProject={props.detailProject}/>
                 </div>
             </div>
         </div>

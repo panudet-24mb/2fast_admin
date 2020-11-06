@@ -37,9 +37,9 @@ export default function DatailAdminControler(props) {
         <hr />
         <div className="row">
             <div className="col-10">
-                <AddPeopleTeam userAlready={props.userAlready}
-                    AddError={props.AddError} checkDashboardUserInTeam={props.checkDashboardUserInTeam}
-                    AddSuccess={props.AddSuccess} checkListUser={props.checkListUser} 
+                <AddPeopleTeam 
+                    checkDashboardUserInTeam={props.checkDashboardUserInTeam}
+                    checkListUser={props.checkListUser} 
                     dataToAdd={props.dataToAdd} dataUser={dataUser}
                 />
             </div>

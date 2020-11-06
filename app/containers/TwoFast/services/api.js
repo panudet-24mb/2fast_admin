@@ -4,7 +4,7 @@
 export const GetUserList = (token) => {
   return {
     method: 'get',
-    url: 'http://www.2fast.online:5000/api/v2/users',
+    url: 'https://www.2fast.online:5000/api/v2/users',
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export const GetUserList = (token) => {
 export const ADMIN_LOGIN = (data) => {
   return {
     method: 'post',
-    url: 'http://www.2fast.online:5001/api/v2/login/admin',
+    url: 'https://www.2fast.online:5001/api/v2/login/admin',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -28,7 +28,7 @@ export const ADMIN_LOGIN = (data) => {
 export const CHECK_DETAIL_ADMMIN = (token) => {
   return {
     method: 'get',
-    url: 'http://www.2fast.online:5000/api/v2/member/admin',
+    url: 'https://www.2fast.online:5000/api/v2/member/admin',
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export const CHECK_DETAIL_ADMMIN = (token) => {
 export const MANAGE_TEAM_GET_TEAMLIST = (token) => {
   return {
     method: 'get',
-    url: 'http://www.2fast.online:5000/api/v2/team',
+    url: 'https://www.2fast.online:5000/api/v2/team',
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export const MANAGE_TEAM_GET_TEAMLIST = (token) => {
 export const CREATE_NEW_TEAM = (token, data) => {
   return {
     method: 'post',
-    url: 'http://www.2fast.online:5000/api/v2/team',
+    url: 'https://www.2fast.online:5000/api/v2/team',
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const CREATE_NEW_TEAM = (token, data) => {
 export const DELETE_TEAM = (token , data) => {
   return {
     method: 'delete',
-    url: 'http://www.2fast.online:5000/api/v2/team',
+    url: 'https://www.2fast.online:5000/api/v2/team',
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const DELETE_TEAM = (token , data) => {
 export const CHANGE_TEAM_NAME = (token, id, name) => {
   return {
     method: 'put',
-    url: 'http://www.2fast.online:5000/api/v2/team/'+id,
+    url: 'https://www.2fast.online:5000/api/v2/team/'+id,
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const CHANGE_TEAM_NAME = (token, id, name) => {
 export const UPDATE_AVATAR_ICON = (token, id, avatarIcon, avatarColor) => {
   return {
     method: 'put',
-    url: 'http://www.2fast.online:5000/api/v2/team/avatar/'+id,
+    url: 'https://www.2fast.online:5000/api/v2/team/avatar/'+id,
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',

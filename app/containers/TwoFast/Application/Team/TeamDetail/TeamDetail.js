@@ -115,41 +115,13 @@ export default function TeamDetail(props) {
         }
     }
 
-    const [checked, setChecked] = useState(false);
-
-    const AddSuccess = () => {
-      setChecked((prev) => !prev);
-      setTimeout(() => {
-        setChecked((prev) => !prev);
-      }, 3000);
-    };
-
-    const [checkedError, setCheckedError] = useState(false);
-
-    const AddError = () => {
-      checkDashboardUserInTeam()
-      setCheckedError((prev) => !prev);
-      setTimeout(() => {
-        setCheckedError((prev) => !prev);
-      }, 3000);
-    };
-
-    const [checkedAlready, setCheckedAlready] = useState(false);
-
-    const userAlready = () => {
-      setCheckedAlready((prev) => !prev);
-      setTimeout(() => {
-        setCheckedAlready((prev) => !prev);
-      }, 3000);
-    };
-  
     return (
       <div>
           <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3">
-                    <DatailAdminControler userAlready={userAlready}
-                      AddError={AddError} checkDashboardUserInTeam={checkDashboardUserInTeam}
-                        AddSuccess={AddSuccess} checkListUser={checkListUser} dataToAdd={dataToAdd} 
+                    <DatailAdminControler 
+                        checkDashboardUserInTeam={checkDashboardUserInTeam}
+                        checkListUser={checkListUser} dataToAdd={dataToAdd} 
                         test={test} detailTeam={detailTeam} changeDisplaySetiingAndTable={changeDisplaySetiingAndTable}
                         />
                 </div>
@@ -202,33 +174,7 @@ export default function TeamDetail(props) {
                     </div>
                 </div>
           </div>
-            <div className="row" >
-                  <div className="col-8" />
-                  <div className="col">
-                
-                          <Fade direction="up" in={checked}>
-                              <Alert variant="filled" severity="success" color="info" >
-                                  <h4 style={{color:'#FFF'}}>User successfully added</h4>
-                              </Alert>
-                          </Fade>
 
-                          <Fade direction="up" in={checkedError}>
-                              <Alert variant="filled" severity="error">
-                                  <h4 style={{color:'#FFF'}}>Error Please try again</h4>
-                              </Alert>
-                          </Fade>
-
-                          <Fade direction="up" in={checkedAlready}>
-                              <Alert variant="filled" severity="warning" style={{ marginTop:'-150px' }} >
-                                  <h4 style={{color:'#FFF'}}>User already in team</h4>
-                              </Alert>
-                          </Fade>
-                   
-                  </div>
-            </div>
-
-          
-          
       </div>
      
     )

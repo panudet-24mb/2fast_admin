@@ -5,8 +5,13 @@ import Avatar from 'react-avatar';
 import { AiOutlineUserAdd } from "react-icons/ai";
 import * as api from '../../service/api_project'
 import axios from 'axios'
+import Lottie from 'lottie-react-web'
+import pleaseCreateUser from '../../AnimationProject/pleaseCreateUser.json'
+import { notification } from 'antd';
+
 
 export default function ListUserTable(props) {
+
     const [user, setUser] = useState([])
     const tableData = [];
     // console.log(props.detailProject);
@@ -16,7 +21,7 @@ export default function ListUserTable(props) {
         return () => {
             
         }
-    }, [])
+    }, [props.allUser])
 
     const mappingData = () => {
         props.allUser.map((el) => {
@@ -25,7 +30,14 @@ export default function ListUserTable(props) {
           setUser(tableData)
     }
 
+    const openNotificationWithIcon = (type,text) => {
+        notification[type]({
+            message: text,
+        });
+    };
+
     function addUser(value) {
+
       const data = {
           user_id : value.user_id,
           is_active : 1 ,
@@ -34,10 +46,23 @@ export default function ListUserTable(props) {
       const token = localStorage.getItem('token');
       const config = api.ADD_USER_IN_PROJECT(token, props.detailProject.project_id, data);
       axios(config).then(res => {
-          console.log(res.data)
+        
+        openNotificationWithIcon('success',<span style={{ position:'relative', top:'4px' }}>Add user <span style={{ color:'#2196f3' }}>{value.user_username}</span> success</span>)
+
           props.listUserInProject()
       })
-      .catch( err => console.log(err))
+      .catch( err =>{
+        if(err.response.status === 409){
+          
+          openNotificationWithIcon('warning',<span style={{ position:'relative', top:'4px' }}>User <span style={{ color:'#faad14' }}>{value.user_username}</span> already active</span>)
+
+        } else {
+          
+          openNotificationWithIcon('error',<span style={{ position:'relative', top:'4px' }}>Can't add user <span style={{ color:'#F00' }}>{value.user_username}</span> Please try again</span>)
+
+        }
+
+      })
   }
 
     const options = {
@@ -106,6 +131,23 @@ export default function ListUserTable(props) {
 
     return (
         <div>
+        {
+          user.length === 0 && (
+            <div>
+                <h1 style={{ textAlign:'center', color:'#6c757d' }}>No User Create</h1>
+                <h5 style={{ textAlign:'center', color:'#6c757d' }}>Please create user</h5>
+                <Lottie
+                    height={400}
+                    options={{
+                          animationData: pleaseCreateUser
+                            }}
+                          />
+            </div>
+          )
+        }
+
+        {
+          user.length !== 0 && (
             <MUIDataTable
                 title={
                     <h3 style={{ fontWeight:'bold', color:'#6c757d' }}> Add user in project</h3>
@@ -114,6 +156,9 @@ export default function ListUserTable(props) {
                 data={user}
                 options={options}
             />
+          )
+        }
+           
         </div>
     )
 }

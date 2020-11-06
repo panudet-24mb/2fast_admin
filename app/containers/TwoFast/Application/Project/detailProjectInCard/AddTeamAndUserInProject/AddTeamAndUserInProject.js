@@ -4,7 +4,7 @@ import { Paper, ButtonBase } from '@material-ui/core';
 import { CardInfoStyle } from './Style';
 import AddTeam from './image/AddTeam.svg'
 import AddUser from './image/AddUser1.svg'
-import { Modal, Button } from 'antd';
+import { Modal, notification, Button } from 'antd';
 import axios from 'axios'
 import * as api from '../../service/api_project'
 import ListUserTable from './ListUserTable'
@@ -12,6 +12,7 @@ import ListTeamTable from './ListTeamTable'
 import AllUserInJob from './AllUserInJob'
 
 export default function AddTeamAndUserInProject(props) {
+
     const classes = CardInfoStyle();
     const [visibleTeam, setVisibleTeam] = useState(false);
     const [visibleUser, setVisibleUser] = useState(false);
@@ -23,13 +24,15 @@ export default function AddTeamAndUserInProject(props) {
 
     // console.log(props.detailProject.project_id);
     
+
+
     async function listUser(){
         const token = localStorage.getItem('token');
         const config = api.FIND_USER_LIST(token);
         const result = await axios(config)
         setAllUser(result.data.message);
     }
-
+    
     async function listTeam(){
         const token = localStorage.getItem('token');
         const config = api.FIND_TEAM_LIST(token);
@@ -75,7 +78,7 @@ export default function AddTeamAndUserInProject(props) {
     return (
         <div>
             <div className="row">
-                <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                     <div className="row">
                         <div className="col" style={{ padding:'20px' }}>
                         <ButtonBase className={classes.buttonBase} onClick={() => setVisibleTeam(true)}>
@@ -125,11 +128,12 @@ export default function AddTeamAndUserInProject(props) {
                     footer={null}   
                     width={1000}
                 >
+                
                     <ListUserTable listUserInProject={listUserInProject} allUser={allUser} detailProject={props.detailProject}/>
                 </Modal>
 
 
-                <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                     <AllUserInJob user={user} team={team} mainFunction={mainFunction} detailProject={props.detailProject}/>
                 </div>
             </div>

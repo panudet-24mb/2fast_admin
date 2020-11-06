@@ -5,6 +5,9 @@ import DisplayIconAvatar from '../../../Team/selectTeamIcon/DisplayIconAvatar'
 import * as api from '../../service/api_project'
 import axios from 'axios'
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import Lottie from 'lottie-react-web'
+import pleaseCreateUser from '../../AnimationProject/pleaseCreateUser.json'
+import { notification } from 'antd';
 
 export default function ListTeamTable(props) {
     const [team, setTeam] = useState([])
@@ -15,7 +18,7 @@ export default function ListTeamTable(props) {
         return () => {
 
         }
-    }, [])
+    }, [props.allTeam])
 
     function mappingData(){
         props.allTeam.map((el) => {
@@ -24,7 +27,14 @@ export default function ListTeamTable(props) {
           setTeam(tableData)
     }
 
+    const openNotificationWithIcon = (type,text) => {
+        notification[type]({
+            message: text,
+        });
+    };
+
     function addTeam(value) {
+        var test = <p style={{ color:'#2196f3' }}>{value.team_name}</p>
         const data = {
             team_id : value.team_id,
             is_active : 1 ,
@@ -33,10 +43,33 @@ export default function ListTeamTable(props) {
         const token = localStorage.getItem('token');
         const config = api.ADD_TEAM_IN_PROJECT(token, props.detailProject.project_id, data);
         axios(config).then(res => {
-            console.log(res.data)
+          
+          openNotificationWithIcon('success',
+              <span style={{ position:'relative', top:'4px' }}>Add team 
+              <span style={{ color:'#2196f3' }}>{value.team_name}</span> success
+              </span>
+          )
             props.listTeamInProject()
         })
-        .catch( err => console.log(err))
+        .catch( err =>{
+          if(err.response.status === 409){
+            
+            openNotificationWithIcon('warning',
+                <span style={{ position:'relative', top:'4px' }}>Team 
+                <span style={{ color:'#faad14' }}>{value.team_name}</span> already active
+                </span>
+            )
+  
+          } else {
+            
+            openNotificationWithIcon('error',
+                <span style={{ position:'relative', top:'4px' }}>Can't add team 
+                <span style={{ color:'#F00' }}>{value.team_name}</span> Please try again
+                </span>
+            )
+  
+          }
+        })
     }
 
     const options = {
@@ -84,6 +117,23 @@ export default function ListTeamTable(props) {
 
     return (
         <div>
+        {
+          team.length === 0 && (
+            <div>
+                <h1 style={{ textAlign:'center', color:'#6c757d' }}>No Team Create</h1>
+                <h5 style={{ textAlign:'center', color:'#6c757d' }}>Please create team</h5>
+                <Lottie
+                    height={400}
+                    options={{
+                          animationData: pleaseCreateUser
+                            }}
+                          />
+            </div>
+          )
+        }
+
+        {
+          team.length !== 0 && (
             <MUIDataTable
                 title={
                     <h3 style={{ fontWeight:'bold', color:'#6c757d' }}> Add team in project</h3>
@@ -92,6 +142,9 @@ export default function ListTeamTable(props) {
                 data={team}
                 options={options}
             />
+          )
+        }
+            
         </div>
     )
 }

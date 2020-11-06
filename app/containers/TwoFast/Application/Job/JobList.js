@@ -58,10 +58,11 @@ export default function JobList(props) {
 
     const listAllJob = () => {
         const token = localStorage.getItem('token');
-        const config = api.LIST_JOB_ALL(token);
+        const config = api.LIST_JOB_ALL(token,props.detailProject.project_id);
         axios(config).then( res => {
-            mappingData(res.data.payload);
-            setCheckJob(res.data.payload)
+
+            mappingData(res.data.payload.job);
+            setCheckJob(res.data.payload.job)
         }).catch( err => {
             console.log(err);
         })

@@ -44,9 +44,12 @@ export default function JobList(props) {
     const history = useHistory();
     const [visible, setVisible] = useState(false);
     const [checkJob, setCheckJob] = useState([])
+    const [JobType, setJobType] = useState([])
     const [job, setJob] = useState()
     const [priority, setPriority] = useState()
     const [status, setStatus] = useState()
+    const [userInProject, setUserInProject] = useState([])
+    const [teamInProject, setTeamInProject] = useState([])
 
     const tableData = [];
 
@@ -54,6 +57,9 @@ export default function JobList(props) {
         listAllJob()
         checkPriority()
         checkStatus()
+        checkJobType()
+        checkUserInProject()
+        checkTeamInProject()
     }, [])
 
     const listAllJob = () => {
@@ -88,6 +94,38 @@ export default function JobList(props) {
     })
 }
 
+const checkJobType = () => {
+  const token = localStorage.getItem('token');
+  const config = api.CHECK_JOB_TYPE(token);
+  axios(config).then( res => {
+      setJobType(res.data.payload.job_type);
+  }).catch( err => {
+      console.log(err);
+  })
+}
+
+function checkUserInProject() {
+  const token = localStorage.getItem('token');
+  const config = api.CHECK_USER_IN_PROJECT(token, props.detailProject.project_id);
+  axios(config).then( res => {
+    setUserInProject(res.data.payload.user);
+  })
+  .catch( err => {
+    console.log(err);
+  })
+}
+
+function checkTeamInProject() {
+  const token = localStorage.getItem('token');
+  const config = api.CHECK_TEAM_IN_PROJECT(token, props.detailProject.project_id);
+  axios(config).then( res => {
+    setTeamInProject(res.data.payload.team)
+  })
+  .catch( err => {
+    console.log(err);
+  })
+}
+
     const mappingData = (data) => {
         data.map((el) => {
             tableData.push([el.job_name, el.job_number, el.job_startdate, el.job_enddate, el]);
@@ -99,6 +137,11 @@ export default function JobList(props) {
         setVisible(false)
     }
 
+    const showModal= () =>{
+      setVisible(true)
+      checkUserInProject()
+      checkTeamInProject()
+    }
 
     const options = {
         filterType: 'dropdown',
@@ -169,7 +212,7 @@ export default function JobList(props) {
 
     return (
     <div>
-        <Button type="primary" onClick={() => setVisible(true)} >
+        <Button type="primary" onClick={() => showModal()} >
           Create new job
         </Button>
   
@@ -212,9 +255,12 @@ export default function JobList(props) {
             visible={visible}
             onOk={() => setVisible(false)}
             onCancel={() => setVisible(false)}
-            footer={null}    
+            footer={null}  
+            width={700}  
         >
-            <CreateNewJob listAllJob={listAllJob} detailProject={props.detailProject} 
+            <CreateNewJob 
+                  JobType={JobType} userInProject={userInProject} teamInProject={teamInProject}
+                  listAllJob={listAllJob} detailProject={props.detailProject} 
                   priority={priority} status={status} closeModal={closeModal}
             />
         </Modal>

@@ -80,10 +80,10 @@ export const GET_ALL_PROJECT = (token) => {
   };
   };
   
-  export const CHECK_TEAM_IN_PROJECT = (token, teamID) => {
+  export const CHECK_TEAM_IN_PROJECT = (token, project_id) => {
     return {
     method: 'get',
-    url: `https://www.2fast.online:5002/api/v2/projects/project_has_team/${teamID}`,
+    url: `https://www.2fast.online:5002/api/v2/projects/project_has_team/${project_id}`,
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -91,10 +91,10 @@ export const GET_ALL_PROJECT = (token) => {
   };
   };
 
-  export const CHECK_USER_IN_PROJECT = (token, teamID) => {
+  export const CHECK_USER_IN_PROJECT = (token, project_id) => {
     return {
     method: 'get',
-    url: `https://www.2fast.online:5002/api/v2/projects/project_has_user/${teamID}`,
+    url: `https://www.2fast.online:5002/api/v2/projects/project_has_user/${project_id}`,
     headers: {
       Authorization: 'Bearer ' + token,
       'Content-Type': 'application/json',
@@ -150,3 +150,16 @@ export const GET_ALL_PROJECT = (token) => {
     }
   };
   };
+
+    //----------- Overview-------------//
+
+    export const GET_DASHBOARD = (token,project_id) => {
+      return {
+      method: 'get',
+      url: `https://www.2fast.online:5002/api/v2/projects/dashboard/${project_id}`,
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
+      }
+    };
+    };

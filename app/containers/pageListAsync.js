@@ -75,16 +75,23 @@ export const Testlib = Loadable({
   loading: Loading,
 });
 /* ------ 2Fast page ------- */
+/* ------ 2Fast Dashboard Home ------- */
+export const DashboardHome = Loadable({
+  loader: () => import('./TwoFast/Application/DashboardHome/DashboardHome'),
+  loading: Loading,
+});
+/* ------ 2Fast User ------- */
 export const ManageUser = Loadable({
   loader: () => import('./TwoFast/Application/Users/ManageNewUser/ManageUser'),
   loading: Loading,
 });
-export const ManageTeam = Loadable({
-  loader: () => import('./TwoFast/Application/Team/Main/ManageTeam'),
-  loading: Loading,
-});
 export const UserDetail = Loadable({
   loader: () => import('./TwoFast/Application/Users/ManageUser/UserDetail/UserDetail'),
+  loading: Loading,
+});
+/* ------ 2Fast Team ------- */
+export const ManageTeam = Loadable({
+  loader: () => import('./TwoFast/Application/Team/Main/ManageTeam'),
   loading: Loading,
 });
 export const TeamDetail = Loadable({

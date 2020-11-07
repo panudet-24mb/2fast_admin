@@ -67,7 +67,7 @@ export default function AddTeamAndUserInProject(props) {
     }, [])
 
     const mainFunction = () => {
-        console.log('mainFunction');
+
         listUser()
         listTeam()
         listTeamInProject()

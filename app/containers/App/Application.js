@@ -1,9 +1,9 @@
+/* eslint-disable */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Templates/Dashboard';
 import {
-  DashboardPage,
   BlankPage,
   Error,
   NotFound,
@@ -17,6 +17,7 @@ import {
   Testlib,
   ListProject,
   DetailProject,
+  DashboardHome,
   DetailJob
 } from '../pageListAsync';
 
@@ -28,14 +29,15 @@ class Application extends React.Component {
       <Dashboard history={history} changeMode={changeMode}>
         <Switch>
           {/* Home */}
-          <Route exact path="/app" component={BlankPage} />
-          <Route path="/app/dashboard" component={DashboardPage} />
+         {/* <Route exact path="/app" component={BlankPage} />
+         <Route path="/app/dashboard" component={DashboardPage} />
           <Route path="/app/form" component={Form} />
           <Route path="/app/table" component={Table} />
           <Route path="/app/page-list" component={Parent} />
           <Route path="/app/pages/not-found" component={NotFound} />
-          <Route path="/app/pages/error" component={Error} />
+          <Route path="/app/pages/error" component={Error} /> 
           {/* 2Fast Component */}
+          <Route exact path="/app/Dashboard" component={DashboardHome} />
           <Route exact path="/app/manage-user" component={ManageUser} />
           <Route path="/app/manage-user/:userid" component={UserDetail} />
           <Route exact path="/app/manage-team" component={ManageTeam} />

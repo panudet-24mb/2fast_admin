@@ -177,29 +177,11 @@ module.exports = [
         title: true,
       },
       {
-        key: 'project_dashboard',
-        name: 'Project Dashboard',
+        key: 'Dashboard',
+        name: 'Dashboard',
         icon: 'poll',
-        link: '',
-      },
-      {
-        key: 'assests_dashboard',
-        name: 'Assets Dashboard',
-        icon: 'pie_chart',
-        link: '',
-      },
-      {
-        key: 'sla_dashboard',
-        name: 'SLA Dashboard',
-        icon: 'show_chart',
-        link: '',
-      },
-      {
-        key: 'repair_dashboard',
-        name: 'Service Dashboard',
-        icon: 'table_chart',
-        link: '',
-      },
+        link: '/app/Dashboard',
+      }
     ],
   },
   {
@@ -253,19 +235,7 @@ module.exports = [
         name: 'Project',
         icon: 'pie_chart',
         link: '/app/project',
-      },
-      {
-        key: 'view_all_project',
-        name: 'View All Project',
-        icon: 'next_week',
-        link: '',
-      },
-      {
-        key: 'create_project',
-        name: 'Create Project',
-        icon: 'note_add',
-        link: '',
-      },
+      }
     ],
   },
   {

@@ -5,6 +5,7 @@ import DeleteProject from './components/DeleteProject'
 import EditProject from './components/EditProject'
 import JobList from '../../Job/JobList'
 import AddTeamAndUserInProject from './AddTeamAndUserInProject/AddTeamAndUserInProject'
+import Overview from './Overview/Overview'
 
 const { TabPane } = Tabs;
 
@@ -16,7 +17,7 @@ export default function DetailProject() {
             <h3 style={{ color:'rgb(109, 107, 107)', fontWeight:'bold' }}>{detailProject.project_name}</h3>
             <Tabs defaultActiveKey="1">
                 <TabPane tab="Overview" key="1">
-                    Overview
+                    <Overview detailProject={detailProject}/>
                 </TabPane>
                 <TabPane tab="Job" key="2">
                     <JobList detailProject={detailProject} />

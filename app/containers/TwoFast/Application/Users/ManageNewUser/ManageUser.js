@@ -6,8 +6,10 @@ import * as api from '../service/api';
 import UserTable from './userTable/UserTable'
 import Swal from 'sweetalert2'
 import Lottie from 'lottie-react-web'
+import { useHistory } from 'react-router-dom';
 
 export default function ManageUser() {
+    const history = useHistory();
     const [listUser, setListUser] = useState([])
     const [limitCreateUser, setLimitCreateUser] = useState()
     const [visible, setVisible] = useState(false);

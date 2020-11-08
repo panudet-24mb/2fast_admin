@@ -204,10 +204,6 @@ const ManageTeam = (props) => {
 
   return (
     <Switch>
-      <Route
-        path="/app/manage-team/hey"
-        render={() => <DetailEx data={testData} />}
-      />
       <Route path="/app/manage-team">
         {AddNewTeam()}
         <Paper

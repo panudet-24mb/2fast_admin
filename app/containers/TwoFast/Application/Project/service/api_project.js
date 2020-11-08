@@ -163,3 +163,14 @@ export const GET_ALL_PROJECT = (token) => {
       }
     };
     };
+    
+    export const CHECK_PRIORITY = (token) => {
+      return {
+      method: 'get',
+      url: 'https://www.2fast.online:5002/api/v2/priority/',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
+      }
+    };
+    };

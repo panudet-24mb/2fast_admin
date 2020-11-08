@@ -184,42 +184,42 @@ module.exports = [
       }
     ],
   },
-  {
-    key: 'yourwork',
-    name: 'Your Work',
-    icon: 'work',
-    child: [
-      {
-        key: 'work',
-        name: 'Work',
-        title: true,
-      },
-      {
-        key: 'recent_work',
-        name: 'Recent work',
-        icon: 'work',
-        link: '/app',
-      },
-      {
-        key: 'worked_on',
-        name: 'Worked on',
-        icon: 'check_circle',
-        link: '',
-      },
-      {
-        key: 'assigned_to_me',
-        name: 'Assigned to me',
-        icon: 'assignment_turned_in',
-        link: '',
-      },
-      {
-        key: 'starred',
-        name: 'Starred',
-        icon: 'grade',
-        link: '',
-      },
-    ],
-  },
+  // {
+  //   key: 'yourwork',
+  //   name: 'Your Work',
+  //   icon: 'work',
+  //   child: [
+  //     {
+  //       key: 'work',
+  //       name: 'Work',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'recent_work',
+  //       name: 'Recent work',
+  //       icon: 'work',
+  //       link: '/app',
+  //     },
+  //     {
+  //       key: 'worked_on',
+  //       name: 'Worked on',
+  //       icon: 'check_circle',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'assigned_to_me',
+  //       name: 'Assigned to me',
+  //       icon: 'assignment_turned_in',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'starred',
+  //       name: 'Starred',
+  //       icon: 'grade',
+  //       link: '',
+  //     },
+  //   ],
+  // },
   {
     key: 'projects',
     name: 'Projects',
@@ -238,46 +238,46 @@ module.exports = [
       }
     ],
   },
-  {
-    key: 'report',
-    name: 'Report',
-    icon: 'insert_drive_file',
-    child: [
-      {
-        key: 'report',
-        name: 'Report',
-        title: true,
-      },
-      {
-        key: 'view_all_report',
-        name: 'View All Report',
-        icon: 'insert_drive_file',
-        link: '',
-      },
-    ],
-  },
+  // {
+  //   key: 'report',
+  //   name: 'Report',
+  //   icon: 'insert_drive_file',
+  //   child: [
+  //     {
+  //       key: 'report',
+  //       name: 'Report',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'view_all_report',
+  //       name: 'View All Report',
+  //       icon: 'insert_drive_file',
+  //       link: '',
+  //     },
+  //   ],
+  // },
   {
     key: 'application',
     name: 'Application',
     icon: 'apps',
     child: [
-      {
-        key: 'subscription_bill',
-        name: 'Subscriptions & Bill',
-        title: true,
-      },
-      {
-        key: 'billing',
-        name: 'Billing',
-        icon: 'payments',
-        link: '',
-      },
-      {
-        key: 'subscriptions',
-        name: 'Manage Subscription',
-        icon: 'monetization_on',
-        link: '',
-      },
+      // {
+      //   key: 'subscription_bill',
+      //   name: 'Subscriptions & Bill',
+      //   title: true,
+      // },
+      // {
+      //   key: 'billing',
+      //   name: 'Billing',
+      //   icon: 'payments',
+      //   link: '',
+      // },
+      // {
+      //   key: 'subscriptions',
+      //   name: 'Manage Subscription',
+      //   icon: 'monetization_on',
+      //   link: '',
+      // },
       {
         key: 'user_management',
         name: 'User Management',
@@ -295,127 +295,127 @@ module.exports = [
         icon: 'groups',
         link: '/app/manage-team',
       },
-      {
-        key: 'manage_grp_permission',
-        name: 'Group & Permission',
-        icon: 'group',
-        link: '',
-      },
-      {
-        key: 'access_requests',
-        name: 'Access Requests',
-        icon: 'beenhere',
-        link: '',
-      },
-      {
-        key: 'site_setting',
-        name: 'Site Setting',
-        title: true,
-      },
-      {
-        key: 'site_access',
-        name: 'Site Access',
-        icon: 'admin_panel_settings',
-        link: '',
-      },
-      {
-        key: 'module_access',
-        name: 'Module Access',
-        icon: 'lock',
-        link: '',
-      },
-      {
-        key: 'storage',
-        name: 'Storage',
-        icon: 'storage',
-        link: '',
-      },
+      // {
+      //   key: 'manage_grp_permission',
+      //   name: 'Group & Permission',
+      //   icon: 'group',
+      //   link: '',
+      // },
+      // {
+      //   key: 'access_requests',
+      //   name: 'Access Requests',
+      //   icon: 'beenhere',
+      //   link: '',
+      // },
+      // {
+      //   key: 'site_setting',
+      //   name: 'Site Setting',
+      //   title: true,
+      // },
+      // {
+      //   key: 'site_access',
+      //   name: 'Site Access',
+      //   icon: 'admin_panel_settings',
+      //   link: '',
+      // },
+      // {
+      //   key: 'module_access',
+      //   name: 'Module Access',
+      //   icon: 'lock',
+      //   link: '',
+      // },
+      // {
+      //   key: 'storage',
+      //   name: 'Storage',
+      //   icon: 'storage',
+      //   link: '',
+      // },
     ],
   },
-  {
-    key: 'setting',
-    name: 'Setting',
-    icon: 'settings',
-    child: [
-      {
-        key: 'user_interface',
-        name: 'User Interface',
-        title: true,
-      },
-      {
-        key: 'site_setting',
-        name: 'Site Setting',
-        icon: 'settings',
-        link: '',
-      },
-      {
-        key: 'system_dashboard',
-        name: 'System Dashboard',
-        icon: 'analytics',
-        link: '',
-      },
-      {
-        key: 'import_export',
-        name: 'Import / Export',
-        title: true,
-      },
-      {
-        key: 'backup_manager',
-        name: 'Backup Manager',
-        icon: 'backup',
-        link: '',
-      },
-      {
-        key: 'external_system',
-        name: 'External Import',
-        icon: 'archive',
-        link: '',
-      },
-      {
-        key: 'recovery',
-        name: 'Recovery',
-        icon: 'sync',
-        link: '',
-      },
-      {
-        key: 'security',
-        name: 'security',
-        title: true,
-      },
-      {
-        key: 'project_role',
-        name: 'Project Role',
-        icon: 'rule',
-        link: '',
-      },
-      {
-        key: 'global_permission',
-        name: 'Global Permission',
-        icon: 'verified_user',
-        link: '',
-      },
-      {
-        key: 'general',
-        name: 'general',
-        title: true,
-      },
-      {
-        key: 'general_config',
-        name: 'General Configuration',
-        icon: 'widgets',
-        link: '',
-      },
-      {
-        key: 'log',
-        name: 'Log',
-        title: true,
-      },
-      {
-        key: 'audit_log',
-        name: 'Audit Log',
-        icon: 'speaker_notes',
-        link: '',
-      },
-    ],
-  },
+  // {
+  //   key: 'setting',
+  //   name: 'Setting',
+  //   icon: 'settings',
+  //   child: [
+  //     {
+  //       key: 'user_interface',
+  //       name: 'User Interface',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'site_setting',
+  //       name: 'Site Setting',
+  //       icon: 'settings',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'system_dashboard',
+  //       name: 'System Dashboard',
+  //       icon: 'analytics',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'import_export',
+  //       name: 'Import / Export',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'backup_manager',
+  //       name: 'Backup Manager',
+  //       icon: 'backup',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'external_system',
+  //       name: 'External Import',
+  //       icon: 'archive',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'recovery',
+  //       name: 'Recovery',
+  //       icon: 'sync',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'security',
+  //       name: 'security',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'project_role',
+  //       name: 'Project Role',
+  //       icon: 'rule',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'global_permission',
+  //       name: 'Global Permission',
+  //       icon: 'verified_user',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'general',
+  //       name: 'general',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'general_config',
+  //       name: 'General Configuration',
+  //       icon: 'widgets',
+  //       link: '',
+  //     },
+  //     {
+  //       key: 'log',
+  //       name: 'Log',
+  //       title: true,
+  //     },
+  //     {
+  //       key: 'audit_log',
+  //       name: 'Audit Log',
+  //       icon: 'speaker_notes',
+  //       link: '',
+  //     },
+  //   ],
+  // },
 ];

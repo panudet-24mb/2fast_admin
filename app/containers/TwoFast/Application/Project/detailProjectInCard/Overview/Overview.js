@@ -11,6 +11,7 @@ import count_users_in_projet from './Animation/count_users_in_projet.json'
 import count_milestone from './Animation/count_milestone.json'
 import ChartDoughnutPriority from './components/ChartDoughnutPriority'
 import ChartDoughnutStatus from './components/ChartDoughnutStatus'
+import JobNear from './components/JobNear'
 
 export default function Overview(props) {
     const [user, setUser] = useState()
@@ -19,6 +20,7 @@ export default function Overview(props) {
     const [job, setJob] = useState()
     const [priority, setPriority] = useState([])
     const [status, setStatus] = useState([])
+    const [jobNear5Day, setJobNear5Day] = useState([])
 
     // console.log(props.detailProject.project_id);
     // console.log(props.detailProject);
@@ -40,6 +42,7 @@ export default function Overview(props) {
             setMilestone(res.data.payload.count_milestone[0].count)
             setPriority(res.data.payload.count_by_priority);
             setStatus(res.data.payload.count_by_status)
+            setJobNear5Day(res.data.payload.job_enddate_near5day)
         })
         .catch( err => {
             console.log(err);
@@ -83,11 +86,16 @@ export default function Overview(props) {
                 /> 
             </Col>
         </Row>
+        <br />
         <Row>
             <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                 <div style={{ width:'100%' }}>
                     <ChartDoughnutPriority value={priority}/>
+                    <hr />
                 </div> 
+                <div>
+                    <JobNear value={jobNear5Day}/>
+                </div>
             </Col>
             <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                 <div style={{ width:'100%' }}>

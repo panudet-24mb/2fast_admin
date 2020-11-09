@@ -56,9 +56,18 @@ export default function ChartDoughnut(props) {
 
     const options = {
         maintainAspectRatio : false,
+        responsive: true,
         legend: {
-          display: false,
-        },
+            display: true,
+            position: "left",
+            align: "center",
+            fontFamily: "Allianz-Neo",
+            textDirection: 'ltr',
+              labels: {
+                usePointStyle: true,
+                fontColor: "#006192",
+              }
+          },
       };
 
     const textNumber = {
@@ -70,8 +79,14 @@ export default function ChartDoughnut(props) {
 
     return (
 <div style={{ marginTop:'20px'}}>
+<h3 style={{fontWeight:'bold', color:'#6c757d', marginTop:'50px' }}>Priority</h3>
     <Row>
-        <Col>
+        <Col xs={12} sm={12} md={12} lg={5} xl={5}>
+            <div style={{ marginRight:'0px' }}>
+                <Doughnut data={data} options={options} />
+            </div>
+        </Col>
+        <Col xs={12} sm={12} md={12} lg={7} xl={7}>
             <div style={{ marginTop:'25px' }}>
                 <div style={{ position:'relative' }}>
                     <div style={{ backgroundColor:'#FF6384' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
@@ -87,11 +102,6 @@ export default function ChartDoughnut(props) {
                     <div style={{ backgroundColor:'#FFCE56' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
                     <h5 style={text}>Low <span style={textNumber}>{low}</span></h5>
                 </div>
-            </div>
-        </Col>
-        <Col>
-            <div style={{ marginRight:'0px' }}>
-                <Doughnut data={data} options={options} />
             </div>
         </Col>
     </Row>

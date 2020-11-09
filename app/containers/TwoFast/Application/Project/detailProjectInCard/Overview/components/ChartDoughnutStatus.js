@@ -3,6 +3,9 @@ import React,{useState, useEffect} from 'react'
 import {Doughnut} from 'react-chartjs-2';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import CanvasJSReact from './Chart/canvasjs.react';
+
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function ChartDoughnutStatus(props) {
     const [active, setActive] = useState(0)
@@ -63,7 +66,7 @@ export default function ChartDoughnutStatus(props) {
                     '#16a596',
                     '#8bcdcd',
                     '#9088d4',
-                    '#FF6384',
+                    '#AF2384',
                     '#898b8a',
                 ],
                 hoverBackgroundColor: [
@@ -73,7 +76,7 @@ export default function ChartDoughnutStatus(props) {
                     '#16a596',
                     '#8bcdcd',
                     '#9088d4',
-                    '#FF6384',
+                    '#AF2384',
                     '#898b8a',
                 ]
             }],
@@ -82,9 +85,18 @@ export default function ChartDoughnutStatus(props) {
     }
     const options = {
         maintainAspectRatio : false,
+        responsive: true,
         legend: {
-          display: false,
-        },
+            display: true,
+            position: "left",
+            align: "center",
+            fontFamily: "Allianz-Neo",
+            textDirection: 'ltr',
+              labels: {
+                usePointStyle: true,
+                fontColor: "#006192",
+              }
+          },
       };
     const textNumber = {
         float:'right'
@@ -93,11 +105,50 @@ export default function ChartDoughnutStatus(props) {
         marginLeft:'30px'
     }
 
+    // const optionsTest = {
+    //     animationEnabled: true,
+    //     title: {
+    //         // text: "Stats"
+    //     },
+    //     subtitles: [{
+    //         // text: "71% Positive",
+    //         verticalAlign: "center",
+    //         fontSize: 24,
+    //         dockInsidePlotArea: true
+    //     }],
+    //     data: [{
+    //         type: "doughnut",
+    //         showInLegend: false,
+    //         indexLabel: "{name}: {y}",
+          
+    //         dataPoints: [
+    //             { name: "Unsatisfied", y: 5 , color:'#36A2EB'},
+    //             { name: "Very Unsatisfied", y: 31 },
+    //             { name: "Very Satisfied", y: 40 },
+    //             { name: "Satisfied", y: 17 },
+    //             { name: "Neutral", y: 7 },
+    //         ]
+    //     }]
+    // }
+
     return (
+
+    //     <div>
+    //     <CanvasJSChart options = {optionsTest} 
+    //         /* onRef={ref => this.chart = ref} */
+    //     />
+    // </div>
+
     <div style={{ marginTop:'20px'}}>
+    <h3 style={{fontWeight:'bold', color:'#6c757d',marginTop:'50px' }}>Status</h3>
         <Row>
-            <Col>
-                <div style={{ marginTop:'25px', overflow: 'auto', height:'145px' }}>
+            <Col xs={12} sm={12} md={12} lg={7} xl={7}>
+                <div style={{ marginRight:'0px' }}>
+                    <Doughnut data={dataToChart} options={options} />
+                </div>
+            </Col>
+            <Col xs={12} sm={12} md={12} lg={5} xl={5}>
+                <div style={{ marginTop:'25px' }}>
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#FF6384' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
                         <h5 style={text}>InActive <span style={textNumber}>{inActive}</span></h5>
@@ -138,11 +189,6 @@ export default function ChartDoughnutStatus(props) {
                         <h5 style={text}>Cancle <span style={textNumber}>{cancle}</span></h5>
                     </div>
 
-                </div>
-            </Col>
-            <Col>
-                <div style={{ marginRight:'0px' }}>
-                    <Doughnut data={dataToChart} options={options} />
                 </div>
             </Col>
         </Row>      

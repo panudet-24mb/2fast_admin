@@ -66,7 +66,7 @@ export default function Overview(props) {
                     value={team}
                     type_count="Team"
                     animation={count_team_in_project} 
-                    color="#3cbb25"
+                    color="rgb(144, 136, 212)"
                 />
             </Col>
             <Col xs={12} sm={12} md={6} lg={3} xl={3}>      
@@ -89,16 +89,17 @@ export default function Overview(props) {
         <br />
         <Row>
             <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                <div style={{ width:'100%' }}>
+                <div style={{ boxShadow:'rgb(158, 158, 158) 0px 0px 5px', margin:'4px', padding:'20px', borderTop:'5px solid rgb(45, 97, 135)' }} >
                     <ChartDoughnutPriority value={priority}/>
-                    <hr />
                 </div> 
-                <div>
+                <br />
+                <div style={{ boxShadow:'rgb(158, 158, 158) 0px 0px 5px', margin:'4px', padding:'20px', borderTop:'5px solid rgb(224, 82, 151)' }} >
                     <JobNear value={jobNear5Day}/>
                 </div>
+                <br />
             </Col>
             <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                <div style={{ width:'100%' }}>
+                <div style={{ boxShadow:'rgb(158, 158, 158) 0px 0px 5px', margin:'4px', padding:'20px', borderTop:'5px solid rgb(40, 171, 185)' }}>
                     <ChartDoughnutStatus value={status}/>
                 </div>
             </Col>

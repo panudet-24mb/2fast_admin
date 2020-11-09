@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
@@ -149,7 +150,8 @@ class SearchUi extends React.Component {
         className={classes.autocomplete}
         inputProps={{
           classes,
-          placeholder: intl.formatMessage(messages.search),
+          placeholder: "Search",
+          // placeholder: intl.formatMessage(messages.search),
           value,
           onChange: this.handleChange,
         }}

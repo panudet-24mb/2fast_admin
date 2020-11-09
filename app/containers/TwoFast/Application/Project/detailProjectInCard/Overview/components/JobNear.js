@@ -33,8 +33,8 @@ export default function JobNear(props) {
     const [colorIconDown, setColorIconDown] = useState('#C6C6C6')
     const [dec, setDeo] = useState(null)
     const listDataLast = () => {
-        setSizeIconUp(45)
-        setSizeIconDown(30)
+        setSizeIconUp(30)
+        setSizeIconDown(20)
         setColorIconUp('#4699C3')
         setColorIconDown('#C6C6C6')
         setData(props.value.sort(compareLast))
@@ -42,8 +42,8 @@ export default function JobNear(props) {
         renderData()
     }
     const listDataOld = () => {
-        setSizeIconUp(30)
-        setSizeIconDown(45)
+        setSizeIconUp(20)
+        setSizeIconDown(30)
         setColorIconUp('#C6C6C6')
         setColorIconDown('#4699C3')
         setData(props.value.sort(compareOld))
@@ -67,13 +67,13 @@ export default function JobNear(props) {
     }
     
     return(
-    <div>
+    <>
         <Row>
             <Col xs={9} sm={9} md={9} lg={9} xl={9}>
-           <h3 style={{fontWeight:'bold', color:'#6c757d', marginTop:'50px'  }}> Job enddate near 5 day</h3>
+           <h5 style={{fontWeight:'bold', color:'#6c757d' }}> Upcoming job</h5>
             </Col>
             <Col xs={3} sm={3} md={3} lg={3} xl={3}>
-            <div style={{ marginTop:'50px' }}>
+            <div style={{ float:'right' }}>
                 <a><AiOutlineUp color={colorIconUp} size={sizeIconUp} onClick={() => listDataLast()}/></a>
                 <a><AiOutlineDown color={colorIconDown} size={sizeIconDown} onClick={() => listDataOld()}/></a>
             </div>
@@ -85,6 +85,6 @@ export default function JobNear(props) {
             </Scrollbar>
         </Row>
 
-    </div>
+    </>
     )
 }

@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import { NavLink, Link } from 'react-router-dom';
 import brand from 'enl-api/dummy/brand';
 // import logo from 'enl-images/logo.svg';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import menuMessages from 'enl-api/ui/menuMessages';
 import link from 'enl-api/ui/link';
@@ -58,6 +58,31 @@ class Header extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  Logout = () => {
+  return  Swal.fire({
+      title: 'Come back Soon!',
+      icon: 'warning',
+      text:'Are you sure want to Log out ?',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#908F8F',
+      confirmButtonText: 'Logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Remove Success',
+          icon:'success',
+          timer: 2000,
+          onClose: () => {
+              auth.delKey();
+              this.props.history.push('/');
+          }
+      })
+      }
+    })
+
   }
 
   handleScroll = () => {
@@ -259,10 +284,7 @@ class Header extends React.Component {
                 variant="contained"
                 color="primary"
                 startIcon={<AccountCircle />}
-                onClick={() => {
-                  auth.delKey();
-                  this.props.history.push('/');
-                }}
+                onClick={() => this.Logout()}
               >
                 LOG OUT
               </Button>

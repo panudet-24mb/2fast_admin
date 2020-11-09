@@ -78,8 +78,8 @@ export default function ChartDoughnut(props) {
     }
 
     return (
-<div style={{ marginTop:'20px'}}>
-<h3 style={{fontWeight:'bold', color:'#6c757d', marginTop:'50px' }}>Priority</h3>
+<div>
+<h5 style={{fontWeight:'bold', color:'#6c757d' }}>Priority</h5>
     <Row>
         <Col xs={12} sm={12} md={12} lg={5} xl={5}>
             <div style={{ marginRight:'0px' }}>
@@ -90,17 +90,17 @@ export default function ChartDoughnut(props) {
             <div style={{ marginTop:'25px' }}>
                 <div style={{ position:'relative' }}>
                     <div style={{ backgroundColor:'#FF6384' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                    <h5 style={text}>High <span style={textNumber}>{high}</span></h5>
+                    <p style={text}>High <span style={textNumber}>{high}</span></p>
                 </div>
                 <hr />
                 <div style={{ position:'relative' }}>
                     <div style={{ backgroundColor:'#36A2EB' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                    <h5 style={text}>Medium <span style={textNumber}>{medium}</span></h5>
+                    <p style={text}>Medium <span style={textNumber}>{medium}</span></p>
                 </div>
                 <hr />
                 <div style={{ position:'relative' }}>
                     <div style={{ backgroundColor:'#FFCE56' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                    <h5 style={text}>Low <span style={textNumber}>{low}</span></h5>
+                    <p style={text}>Low <span style={textNumber}>{low}</span></p>
                 </div>
             </div>
         </Col>

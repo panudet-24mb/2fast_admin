@@ -139,8 +139,8 @@ export default function ChartDoughnutStatus(props) {
     //     />
     // </div>
 
-    <div style={{ marginTop:'20px'}}>
-    <h3 style={{fontWeight:'bold', color:'#6c757d',marginTop:'50px' }}>Status</h3>
+    <div>
+    <h5 style={{fontWeight:'bold', color:'#6c757d'}}>Status</h5>
         <Row>
             <Col xs={12} sm={12} md={12} lg={7} xl={7}>
                 <div style={{ marginRight:'0px' }}>
@@ -151,42 +151,42 @@ export default function ChartDoughnutStatus(props) {
                 <div style={{ marginTop:'25px' }}>
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#FF6384' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>InActive <span style={textNumber}>{inActive}</span></h5>
+                        <p style={text}>InActive <span style={textNumber}>{inActive}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#36A2EB' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Active <span style={textNumber}>{active}</span></h5>
+                        <p style={text}>Active <span style={textNumber}>{active}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#fcf876' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Inprogress <span style={textNumber}>{inprogress}</span></h5>
+                        <p style={text}>Inprogress <span style={textNumber}>{inprogress}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#16a596' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Pending <span style={textNumber}>{pending}</span></h5>
+                        <p style={text}>Pending <span style={textNumber}>{pending}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#8bcdcd' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Pending_client <span style={textNumber}>{pending_client}</span></h5>
+                        <p style={text}>Pending_client <span style={textNumber}>{pending_client}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#9088d4' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Complete <span style={textNumber}>{complete}</span></h5>
+                        <p style={text}>Complete <span style={textNumber}>{complete}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#FF6384' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Reject <span style={textNumber}>{reject}</span></h5>
+                        <p style={text}>Reject <span style={textNumber}>{reject}</span></p>
                     </div>
                     <hr />
                     <div style={{ position:'relative' }}>
                         <div style={{ backgroundColor:'#898b8a' , width:'20px', height:'20px', position:'absolute', borderRadius:'50%', marginTop:'3px'}} /> 
-                        <h5 style={text}>Cancle <span style={textNumber}>{cancle}</span></h5>
+                        <p style={text}>Cancle <span style={textNumber}>{cancle}</span></p>
                     </div>
 
                 </div>

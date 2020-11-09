@@ -69,7 +69,7 @@ export default function JobNear5Day(props) {
       }, [props.value])
     
     return (
-    <div style={{ height:'100px', borderRadius:'7px' }}>
+    <>
         <Row>
             <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                <div style={{ position:'relative', top:'20px', left:'20px' }}>
@@ -78,12 +78,12 @@ export default function JobNear5Day(props) {
             </Col>
             <Col xs={8} sm={8} md={8} lg={8} xl={8}>
                 <div style={{ marginTop:'20px' }}>
-                    <h5 style={{ fontWeight:'bold', color:'rgb(109, 107, 107)' }}>{job_name}</h5>
-                    <h5 style={{ color:'rgb(109, 107, 107)'  }}>{job_enddate}</h5>
+                    <h6 style={{ fontWeight:'bold', color:'rgb(109, 107, 107)' }}>{job_name}</h6>
+                    <h6 style={{ color:'rgb(109, 107, 107)'  }}>{job_enddate}</h6>
                 </div>
             </Col>
         </Row>
         <hr />
-    </div>
+    </>
     )
 }
